@@ -1,17 +1,16 @@
-window.billComponent = Vue.extend({
+window.billReceiveMenuComponent = Vue.extend({
   template: `
     <ul>
       <li v-for="o in menus">
         <a v-link="{name: o.routeName}">{{o.name}}</a>
       </li>
     </ul>
-    <router-view></router-view>
   `,
   data: function(){
     return {
       menus: [
-        {id: 0, name: "Contas a pagar", routeName: 'bills.pay'},
-        {id: 1, name: "Contas a receber", routeName: 'bills.receive'},
+        {id: 0, name: "Listar Contas", routeName: 'bill.receive.list'},
+        {id: 1, name: "Criar Conta", routeName: 'bill.receive.create'},
       ]
     }
   }

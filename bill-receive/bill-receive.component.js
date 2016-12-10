@@ -1,60 +1,59 @@
 window.billReceiveComponent = Vue.extend({
-  // components: {
-  //   'bill-pay-menu-component': billPayMenuComponent
-  // },
+  components: {
+    'bill-receive-menu-component': billReceiveMenuComponent
+  },
   template: `
     <style media="screen">
-      .nao-paga {
+      .nao-recebida {
         color: red
       }
       .sem-conta {
         color: gray
       }
-      .nada-a-pagar {
+      .nada-a-receber {
         color: blue
       }
     </style>
 
     <h1>{{title}}</h1>
-<!--    <h3 :class=statusLabel>{{status}}</h3>
+    <h3 :class=statusLabel>{{status}}</h3>
     <nav>
-      <bill-pay-menu-component></bill-pay-menu-component>
+      <bill-receive-menu-component></bill-receive-menu-component>
     </nav>
-    <router-view></router-view> -->
+    <router-view></router-view>
   `,
 
   data: function() {
     return {
-      title: "Contas a receber",
+      title: "Contas a Receber",
     }
   },
   computed: {
-  //   status() {
-  //     var count = 0;
-  //     bills = this.$root.$children[0].billsPay;
-  //     if (!bills) {
-  //        return "Nenhuma conta cadastrada."
-  //     }
-  //     for(var i in bills){
-  //       // if (!this.$children[1].bills[i].done) {
-  //       if (!bills[i].done) {
-  //         count++;
-  //       }
-  //     }
-  //     return !count? "Nenhuma conta a pagar" : "Existem " + count + " a serem pagas"
-  //   },
-  //   statusLabel(){
-  //     bills = this.$root.$children[0].billsPay;
-  //     if (bills.length == 0) {
-  //       return 'sem-conta'
-  //     }
-  //     var count = 0;
-  //     for(var i in bills){
-  //       if (!bills[i].done) {
-  //         count++;
-  //       }
-  //     }
-  //     return !count? "nada-a-pagar" : "nao-paga"
-  //   }
+    status() {
+      var count = 0;
+      bills = this.$root.$children[0].billsReceive;
+      if (!bills) {
+         return "Nenhuma conta cadastrada."
+      }
+      for(var i in bills){
+        if (!bills[i].done) {
+          count++;
+        }
+      }
+      return !count? "Nenhuma conta a receber" : "Existem " + count + " a serem recebidas"
+    },
+    statusLabel(){
+      bills = this.$root.$children[0].billsReceive;
+      if (bills.length == 0) {
+        return 'sem-conta'
+      }
+      var count = 0;
+      for(var i in bills){
+        if (!bills[i].done) {
+          count++;
+        }
+      }
+      return !count? "nada-a-receber" : "nao-recebida"
+    }
   }
 });

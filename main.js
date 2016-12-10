@@ -15,6 +15,11 @@ window.mainComponent = Vue.extend({
         {date_due: "10/12/2016", name: "Conta de Telefone", value: 85.00, done: 0},
         {date_due: "05/12/2016", name: "Colégio", value: 488.00, done: 1},
         {date_due: "21/11/2016", name: "Cartão de Crédito", value: 2800.00, done: 0},
+    ],
+      billsReceive:[
+          {date_due: "10/12/2016", name: "Aula de Matemática", value: 99.99, done: 1},
+          {date_due: "01/12/2016", name: "Aula de Lógica Matemática", value: 199.99, done: 0},
+          {date_due: "01/01/2017", name: "Sistema de Laboratório", value: 1800.00, done: 0},
       ]
     }
   }
@@ -41,11 +46,25 @@ router.map({
   },
   'bills-receive': {
       name: 'bills.receive',
-      component: billReceiveComponent
-  },
-  '*' : {
-    component: billPayComponent
-  }
+      component: billReceiveComponent,
+      subRoutes: {
+        '/': {
+          name: 'bill.receive.list',
+          component: billReceiveListComponent
+        },
+        '/create': {
+          name: 'bill.receive.create',
+          component: billReceiveCreateComponent
+        },
+        '/:index/update': {
+          name: 'bill.receive.update',
+          component: billReceiveCreateComponent
+        },
+      }
+    },
+    '*' : {
+        component: billPayComponent
+    }
 });
 
 router.start({

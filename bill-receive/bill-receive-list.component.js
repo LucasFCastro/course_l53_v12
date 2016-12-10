@@ -1,10 +1,10 @@
-window.billPayListComponent = Vue.extend({
+window.billReceiveListComponent = Vue.extend({
   template: `
     <style media="screen">
-      .paga{
+      .recebida{
         color: green
       }
-      .nao-paga {
+      .nao-recebida {
         color: red
       }
     </style>
@@ -15,7 +15,7 @@ window.billPayListComponent = Vue.extend({
           <th>Vencimento</th>
           <th>Nome da Conta</th>
           <th>Valor</th>
-          <th>Paga?</th>
+          <th>Recebida?</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -25,18 +25,18 @@ window.billPayListComponent = Vue.extend({
           <td>{{bill.date_due}}</td>
           <td>{{bill.name}}</td>
           <td>{{bill.value | currency 'R$ '}}</td>
-          <td :class="{'paga' : bill.done, 'nao-paga' : !bill.done}">
+          <td :class="{'recebida' : bill.done, 'nao-recebida' : !bill.done}">
             <input type="checkbox" v-model="bill.done">
-            {{bill.done | doneLabelPay}}
+            {{bill.done | doneLabelReceive}}
           </td>
-          <td><a v-link="{name: 'bill.pay.update', params: {index: index}}">Editar</a> | <a href="" @click.prevent="deleteBill(bill, index)">Excluir</a></td>
+          <td><a v-link="{name: 'bill.receive.update', params: {index: index}}">Editar</a> | <a href="" @click.prevent="deleteBill(bill, index)">Excluir</a></td>
         </tr>
       </tbody>
     </table>
   `,
   data: function () {
     return {
-      bills: this.$root.$children[0].billsPay
+      bills: this.$root.$children[0].billsReceive
     }
   },
   methods: {
