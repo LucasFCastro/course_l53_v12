@@ -26,6 +26,10 @@ window.mainComponent = Vue.extend({
 });
 
 router.map({
+    'dashboard' : {
+        name: 'bills.dashboard',
+        component: billDashboard
+    },
   '/bills-pay' : {
     name: 'bills.pay',
     component: billPayComponent,
@@ -63,7 +67,7 @@ router.map({
       }
     },
     '*' : {
-        component: billPayComponent
+        component: billDashboard
     }
 });
 
