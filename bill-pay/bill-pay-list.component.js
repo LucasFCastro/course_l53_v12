@@ -20,45 +20,49 @@ window.billPayListComponent = Vue.extend({
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(index, bill) in bills">
-          <td>{{index+1}}</td>
+        <tr v-for="bill in bills">
+          <td>{{bill.id}}</td>
           <td>{{bill.date_due}}</td>
           <td>{{bill.name}}</td>
           <td>{{bill.value | currency 'R$ '}}</td>
           <td :class="{'paga' : bill.done, 'nao-paga' : !bill.done}">
-            <input type="checkbox" v-model="bill.done">
             {{bill.done | doneLabelPay}}
           </td>
-          <td><a v-link="{name: 'bill.pay.update', params: {index: index}}">Editar</a> | <a href="" @click.prevent="deleteBill(bill, index)">Excluir</a></td>
+          <td><a v-link="{name: 'bill.pay.update', params: {id: bill.id}}">Editar</a> | <a href="" @click.prevent="deleteBill(bill)">Excluir</a></td>
         </tr>
       </tbody>
     </table>
   `,
+  http: {
+      root: 'http://localhost:8080/api',
+  },
   data: function () {
     return {
-      bills: this.$root.$children[0].billsPay
+      bills: []
     }
+  },
+  created: function () {
+    this.$dispatch('getBills')
   },
   methods: {
-    deleteBill(bill, id){
-      bills = this.bills
-      swal({
-        title: "Excluir Conta",
-        text: "Deseja excluir esta conta " + bill.name + "?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Sim",
-        cancelButtonText: "Não",
-        closeOnConfirm: false,
-        html: false
-      },
-        function(){
-          bills.splice(id, 1)
-          swal("Excluída!",
-          "A conta " + bill.name + " foi excluída com sucesso.",
-          "success")
-        });
+    deleteBill(bill){
+        if (confirm('Deseja excluir esta conta?')){
+            this.$http.delete('bills/'+bill.id).then(function() {
+                this.bills.$remove(bill.id)
+                this.$dispatch('getBills')
+                this.$dispatch('changeStatus')
+                swal("Excluída!", "A conta " + bill.name + " foi excluída com sucesso.", "success")
+            })
+        }
+
+        },
+    },
+    events: {
+        getBills(){
+            this.$http.get('bills')
+            .then(function(response) {
+                this.bills = response.data;
+            })
+        }
     }
-  },
 });

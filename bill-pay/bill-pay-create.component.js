@@ -17,12 +17,15 @@ window.billPayCreateComponent = Vue.extend({
         <br/>
         <br/>
         <label for="pago">Paga</label>
-        <input type="checkbox" id="pago" v-model="bill.done">
+        <input type="checkbox" id="pago" v-model="bill.done"> {{bill.done | doneLabelPay}}
         <br/>
         <br/>
         <input type="submit" value="Cadastrar">
     </form>
   `,
+  http: {
+      root: 'http://localhost:8080/api',
+  },
   data: function () {
       return {
         title: '',
@@ -50,19 +53,31 @@ window.billPayCreateComponent = Vue.extend({
         }
     } else {
       this.title = 'Editando Conta'
-      this.bill = this.$root.$children[0].billsPay[this.$route.params.index]
+      this.bill = this.$http.get('bills/' + this.$route.params.id)
+      .then(function(response) {
+          this.bill = response.data;
+      })
   }
 },
   methods: {
     submit(){
       if (this.title == 'Criando Conta') {
-        this.$root.$children[0].billsPay.push(this.bill)
+          this.$http.post('bills', this.bill)
+          .then(function(response) {
+              this.$dispatch('changeStatus')
+              this.$router.go({
+                name: 'bill.pay.list'
+              })
+          })
       } else {
-
+          this.$http.put('bills/'+this.bill.id, this.bill)
+          .then(function(response) {
+              this.$dispatch('changeStatus')
+              this.$router.go({
+                name: 'bill.pay.list'
+              })
+          })
       }
-      this.$router.go({
-        name: 'bill.pay.list'
-      })
     }
   }
 });
