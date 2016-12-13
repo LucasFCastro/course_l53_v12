@@ -31,10 +31,6 @@ window.billPayComponent = Vue.extend({
       status: false,
     }
   },
-  http: {
-      root: 'http://localhost:8080/api',
-  },
-
     created: function() {
         this.$dispatch('changeStatus')
     },
@@ -57,8 +53,9 @@ window.billPayComponent = Vue.extend({
         },
 
         updateStatus(){
-            this.$http.get('bills').then(function(response) {
-              this.calculateStatus(response.data)
+            var self = this
+            Bill.query().then(function(response) {
+              self.calculateStatus(response.data)
             })
         },
 
@@ -68,6 +65,7 @@ events: {
 
     changeStatus() {
         this.updateStatus()
+        this.$dispatch('changeInfo');
     }
 }
 });

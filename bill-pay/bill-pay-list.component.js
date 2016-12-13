@@ -33,9 +33,6 @@ window.billPayListComponent = Vue.extend({
       </tbody>
     </table>
   `,
-  http: {
-      root: 'http://localhost:8080/api',
-  },
   data: function () {
     return {
       bills: []
@@ -47,10 +44,11 @@ window.billPayListComponent = Vue.extend({
   methods: {
     deleteBill(bill){
         if (confirm('Deseja excluir esta conta?')){
-            this.$http.delete('bills/'+bill.id).then(function() {
-                this.bills.$remove(bill.id)
-                this.$dispatch('getBills')
-                this.$dispatch('changeStatus')
+            var self = this
+            Bill.delete({id: bill.id}).then(function() {
+                self.bills.$remove(bill.id)
+                self.$dispatch('getBills')
+                self.$dispatch('changeStatus')
                 swal("Excluída!", "A conta " + bill.name + " foi excluída com sucesso.", "success")
             })
         }
@@ -59,9 +57,9 @@ window.billPayListComponent = Vue.extend({
     },
     events: {
         getBills(){
-            this.$http.get('bills')
-            .then(function(response) {
-                this.bills = response.data;
+            var self = this
+            Bill.query().then(function(response) {
+                self.bills = response.data;
             })
         }
     }

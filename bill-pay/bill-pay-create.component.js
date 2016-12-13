@@ -23,9 +23,6 @@ window.billPayCreateComponent = Vue.extend({
         <input type="submit" value="Cadastrar">
     </form>
   `,
-  http: {
-      root: 'http://localhost:8080/api',
-  },
   data: function () {
       return {
         title: '',
@@ -53,27 +50,30 @@ window.billPayCreateComponent = Vue.extend({
         }
     } else {
       this.title = 'Editando Conta'
-      this.bill = this.$http.get('bills/' + this.$route.params.id)
+      var self = this
+      Bill.get({id: this.$route.params.id})
       .then(function(response) {
-          this.bill = response.data;
+          self.bill = response.data;
       })
   }
 },
   methods: {
     submit(){
-      if (this.title == 'Criando Conta') {
-          this.$http.post('bills', this.bill)
+        var self = this
+        if (this.title == 'Criando Conta') {
+
+          Bill.save({}, this.bill)
           .then(function(response) {
-              this.$dispatch('changeStatus')
-              this.$router.go({
+              self.$dispatch('changeStatus')
+              self.$router.go({
                 name: 'bill.pay.list'
               })
           })
       } else {
-          this.$http.put('bills/'+this.bill.id, this.bill)
+          Bill.update({id: this.bill.id}, this.bill)
           .then(function(response) {
-              this.$dispatch('changeStatus')
-              this.$router.go({
+              self.$dispatch('changeStatus')
+              self.$router.go({
                 name: 'bill.pay.list'
               })
           })
