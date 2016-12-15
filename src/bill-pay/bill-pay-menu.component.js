@@ -6,7 +6,7 @@ window.billPayMenuComponent = Vue.extend({
       </li>
     </ul>
   `,
-  data: function(){
+  data(){
     return {
       menus: [
         {id: 0, name: "Listar Contas", routeName: 'bill.pay.list'},

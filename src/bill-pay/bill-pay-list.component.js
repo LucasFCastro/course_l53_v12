@@ -33,33 +33,41 @@ window.billPayListComponent = Vue.extend({
       </tbody>
     </table>
   `,
-  data: function () {
+  data() {
     return {
       bills: []
     }
   },
-  created: function () {
+  created() {
     this.$dispatch('getBillsPay')
   },
   methods: {
     deleteBill(bill){
-        if (confirm('Deseja excluir esta conta?')){
-            var self = this
-            BillPay.delete({id: bill.id}).then(function() {
-                self.bills.$remove(bill.id)
-                self.$dispatch('getBillsPay')
-                self.$dispatch('changeStatusPay')
-                swal("Excluída!", "A conta " + bill.name + " foi excluída com sucesso.", "success")
-            })
-        }
-
+        swal({
+         title: "Excluir Conta",
+         text: "Deseja excluir esta conta " + bill.name + "?",
+         type: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#DD6B55",
+         confirmButtonText: "Sim",
+         cancelButtonText: "Não",
+         closeOnConfirm: false,
+         html: false
         },
+         () => {
+             BillPay.delete({id: bill.id}).then(() => {
+                 this.bills.$remove(bill.id)
+                 this.$dispatch('getBillsPay')
+                 this.$dispatch('changeStatusPay')
+                 swal("Excluída!", "A conta " + bill.name + " foi excluída com sucesso.", "success")
+             })
+         });
+      },
     },
     events: {
         getBillsPay(){
-            var self = this
-            BillPay.query().then(function(response) {
-                self.bills = response.data;
+            BillPay.query().then((response) => {
+                this.bills = response.data;
             })
         }
     }

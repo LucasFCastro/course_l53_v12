@@ -33,34 +33,40 @@ window.billReceiveListComponent = Vue.extend({
       </tbody>
     </table>
   `,
-  data: function () {
+  data() {
     return {
       bills: []
     }
   },
-  created: function () {
+  created() {
     this.$dispatch('getBillsReceive')
   },
     methods: {
       deleteBill(bill){
-          var self = this
-          if (confirm('Deseja excluir esta conta a receber?')){
-              BillReceive.delete({id: bill.id}).then(function() {
-                  self.bills.$remove(bill.id)
-                  self.$dispatch('getBillsReceive')
-                  self.$dispatch('changeStatusReceive')
-                  swal("Excluída!", "A conta " + bill.name + " foi excluída com sucesso.", "success")
-              })
-          }
-
+          swal({
+           title: "Excluir Conta",
+           text: "Deseja excluir esta conta " + bill.name + "?",
+           type: "warning",
+           showCancelButton: true,
+           confirmButtonColor: "#DD6B55",
+           confirmButtonText: "Sim",
+           cancelButtonText: "Não",
+           closeOnConfirm: false,
+           html: false
           },
+           () => {
+               BillReceive.delete({id: bill.id}).then(() => {
+                   this.bills.$remove(bill.id)
+                   this.$dispatch('getBillsReceive')
+                   this.$dispatch('changeStatusReceive')
+                   swal("Excluída!", "A conta " + bill.name + " foi excluída com sucesso.", "success")
+               })
+           });
+        },
       },
       events: {
           getBillsReceive(){
-              var self = this
-              BillReceive.query().then(function(response) {
-                  self.bills = response.data;
-              })
+              BillReceive.query().then((response) => this.bills = response.data)
           }
       }
 });

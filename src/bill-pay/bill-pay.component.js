@@ -1,38 +1,38 @@
-window.billReceiveComponent = Vue.extend({
+window.billPayComponent = Vue.extend({
   components: {
-    'bill-receive-menu-component': billReceiveMenuComponent
+    'bill-pay-menu-component': billPayMenuComponent
   },
   template: `
     <style media="screen">
-      .nao-recebida {
+      .nao-paga {
         color: red
       }
       .sem-conta {
         color: gray
       }
-      .nada-a-receber {
+      .nada-a-pagar {
         color: blue
       }
     </style>
 
     <h1>{{title}}</h1>
-    <h3 :class="{'sem-conta': status < 0, 'nada-a-receber': status == 0, 'nao-recebida': status > 0}">
-        {{status | statusBillReceive}}
+    <h3 :class="{'sem-conta': status < 0, 'nada-a-pagar': status == 0, 'nao-paga': status > 0}">
+        {{status | statusBillPay}}
     </h3>
     <nav>
-      <bill-receive-menu-component></bill-receive-menu-component>
+      <bill-pay-menu-component></bill-pay-menu-component>
     </nav>
     <router-view></router-view>
   `,
 
-  data: function() {
+  data() {
     return {
-      title: "Contas a Receber",
+      title: "Contas a Pagar",
       status: false,
     }
   },
-    created: function() {
-        this.$dispatch('changeStatusReceive')
+    created() {
+        this.$dispatch('changeStatusPay')
     },
 
     methods: {
@@ -42,8 +42,8 @@ window.billReceiveComponent = Vue.extend({
                 this.status = -1
             }
             else {
-                var count = 0;
-                for(var i in bills){
+                let count = 0;
+                for(let i in bills){
                     if (!bills[i].done) {
                         count++;
                     }
@@ -53,19 +53,15 @@ window.billReceiveComponent = Vue.extend({
         },
 
         updateStatus(){
-            var self = this
-            BillReceive.query().then(function(response) {
-              self.calculateStatus(response.data)
-            })
+            BillPay.query().then((response) => this.calculateStatus(response.data))
         },
 
     },
 
 events: {
-
-    changeStatusReceive() {
+    changeStatusPay() {
         this.updateStatus()
         this.$dispatch('changeInfo');
     }
-}
+  }
 });

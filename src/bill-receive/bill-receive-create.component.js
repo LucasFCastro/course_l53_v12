@@ -23,7 +23,7 @@ window.billReceiveCreateComponent = Vue.extend({
         <input type="submit" value="Cadastrar">
     </form>
   `,
-  data: function () {
+  data() {
       return {
         title: '',
         names: [
@@ -40,7 +40,7 @@ window.billReceiveCreateComponent = Vue.extend({
         }
       }
   },
-  created: function () {
+  created() {
     if (this.$route.name == 'bill.receive.create') {
         this.title = 'Criando Conta'
         this.bill = {
@@ -50,29 +50,25 @@ window.billReceiveCreateComponent = Vue.extend({
         }
     } else {
       this.title = 'Editando Conta'
-      var self = this
       BillReceive.get({id: this.$route.params.id})
-      .then(function(response) {
-          self.bill = response.data;
-      })
+      .then((response) => this.bill = response.data)
   }
 },
   methods: {
       submit(){
-          var self = this
           if (this.title == 'Criando Conta') {
             BillReceive.save({}, this.bill)
-            .then(function(response) {
-                self.$dispatch('changeStatusReceive')
-                self.$router.go({
+            .then((response) => {
+                this.$dispatch('changeStatusReceive')
+                this.$router.go({
                   name: 'bill.receive.list'
                 })
             })
         } else {
             BillReceive.update({id: this.bill.id}, this.bill)
-            .then(function(response) {
-                self.$dispatch('changeStatusReceive')
-                self.$router.go({
+            .then((response) => {
+                this.$dispatch('changeStatusReceive')
+                this.$router.go({
                   name: 'bill.receive.list'
                 })
             })
