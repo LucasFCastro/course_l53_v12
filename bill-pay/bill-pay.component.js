@@ -17,7 +17,7 @@ window.billPayComponent = Vue.extend({
 
     <h1>{{title}}</h1>
     <h3 :class="{'sem-conta': status < 0, 'nada-a-pagar': status == 0, 'nao-paga': status > 0}">
-        {{status | statusGeneral}}
+        {{status | statusBillPay}}
     </h3>
     <nav>
       <bill-pay-menu-component></bill-pay-menu-component>
@@ -27,12 +27,12 @@ window.billPayComponent = Vue.extend({
 
   data: function() {
     return {
-      title: "Contas a pagar",
+      title: "Contas a Pagar",
       status: false,
     }
   },
     created: function() {
-        this.$dispatch('changeStatus')
+        this.$dispatch('changeStatusPay')
     },
 
     methods: {
@@ -54,7 +54,7 @@ window.billPayComponent = Vue.extend({
 
         updateStatus(){
             var self = this
-            Bill.query().then(function(response) {
+            BillPay.query().then(function(response) {
               self.calculateStatus(response.data)
             })
         },
@@ -63,7 +63,7 @@ window.billPayComponent = Vue.extend({
 
 events: {
 
-    changeStatus() {
+    changeStatusPay() {
         this.updateStatus()
         this.$dispatch('changeInfo');
     }

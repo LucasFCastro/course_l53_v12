@@ -11,7 +11,7 @@ window.billReceiveListComponent = Vue.extend({
     <table>
       <thead>
         <tr>
-          <th>#</th>
+          <th>Id</th>
           <th>Vencimento</th>
           <th>Nome da Conta</th>
           <th>Valor</th>
@@ -20,45 +20,47 @@ window.billReceiveListComponent = Vue.extend({
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(index, bill) in bills">
-          <td>{{index+1}}</td>
+        <tr v-for="bill in bills">
+          <td>{{bill.id}}</td>
           <td>{{bill.date_due}}</td>
           <td>{{bill.name}}</td>
           <td>{{bill.value | currency 'R$ '}}</td>
           <td :class="{'recebida' : bill.done, 'nao-recebida' : !bill.done}">
-            <input type="checkbox" v-model="bill.done">
             {{bill.done | doneLabelReceive}}
           </td>
-          <td><a v-link="{name: 'bill.receive.update', params: {index: index}}">Editar</a> | <a href="" @click.prevent="deleteBill(bill, index)">Excluir</a></td>
+          <td><a v-link="{name: 'bill.receive.update', params: {id: bill.id}}">Editar</a> | <a href="" @click.prevent="deleteBill(bill)">Excluir</a></td>
         </tr>
       </tbody>
     </table>
   `,
   data: function () {
     return {
-      bills: this.$root.$children[0].billsReceive
+      bills: []
     }
   },
-  methods: {
-    deleteBill(bill, id){
-      bills = this.bills
-      swal({
-        title: "Excluir Conta",
-        text: "Deseja excluir esta conta " + bill.name + "?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Sim",
-        cancelButtonText: "Não",
-        closeOnConfirm: false,
-        html: false
+  created: function () {
+    this.$dispatch('getBillsReceive')
+  },
+    methods: {
+      deleteBill(bill){
+          var self = this
+          if (confirm('Deseja excluir esta conta a receber?')){
+              BillReceive.delete({id: bill.id}).then(function() {
+                  self.bills.$remove(bill.id)
+                  self.$dispatch('getBillsReceive')
+                  self.$dispatch('changeStatusReceive')
+                  swal("Excluída!", "A conta " + bill.name + " foi excluída com sucesso.", "success")
+              })
+          }
+
+          },
       },
-        function(){
-          bills.splice(id, 1)
-          swal("Excluída!",
-          "A conta " + bill.name + " foi excluída com sucesso.",
-          "success")
-        });
-    }
-  },
+      events: {
+          getBillsReceive(){
+              var self = this
+              BillReceive.query().then(function(response) {
+                  self.bills = response.data;
+              })
+          }
+      }
 });

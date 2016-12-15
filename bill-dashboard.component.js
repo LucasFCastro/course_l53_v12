@@ -12,6 +12,7 @@ window.billDashboard = Vue.extend({
 	data: function () {
 		return {
 			totalBillPay: 0,
+			totalBillReceive: 0,
 		}
 	},
 	created: function () {
@@ -20,19 +21,12 @@ window.billDashboard = Vue.extend({
 	events: {
 		changeInfo() {
 			var self = this
-			Bill.total().then(function(response) {
+			BillPay.total().then(function(response) {
 				self.totalBillPay = response.data.total
+			}),
+			BillReceive.total().then(function(response) {
+				self.totalBillReceive = response.data.total
 			})
 		}
 	},
-	computed:{
-		totalBillReceive() {
-			total = 0
-			bills = this.$root.$children[0].billsReceive
-			for (var i = 0; i < bills.length; i++) {
-				total = total + bills[i].value
-			}
-			return total
-		}
-	}
 });

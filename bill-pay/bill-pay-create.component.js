@@ -51,7 +51,7 @@ window.billPayCreateComponent = Vue.extend({
     } else {
       this.title = 'Editando Conta'
       var self = this
-      Bill.get({id: this.$route.params.id})
+      BillPay.get({id: this.$route.params.id})
       .then(function(response) {
           self.bill = response.data;
       })
@@ -62,17 +62,17 @@ window.billPayCreateComponent = Vue.extend({
         var self = this
         if (this.title == 'Criando Conta') {
 
-          Bill.save({}, this.bill)
+          BillPay.save({}, this.bill)
           .then(function(response) {
-              self.$dispatch('changeStatus')
+              self.$dispatch('changeStatusPay')
               self.$router.go({
                 name: 'bill.pay.list'
               })
           })
       } else {
-          Bill.update({id: this.bill.id}, this.bill)
+          BillPay.update({id: this.bill.id}, this.bill)
           .then(function(response) {
-              self.$dispatch('changeStatus')
+              self.$dispatch('changeStatusPay')
               self.$router.go({
                 name: 'bill.pay.list'
               })

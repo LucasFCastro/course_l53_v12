@@ -17,7 +17,7 @@ window.billReceiveCreateComponent = Vue.extend({
         <br/>
         <br/>
         <label for="pago">Recebida</label>
-        <input type="checkbox" id="pago" v-model="bill.done">
+        <input type="checkbox" id="pago" v-model="bill.done"> {{bill.done | doneLabelReceive}}
         <br/>
         <br/>
         <input type="submit" value="Cadastrar">
@@ -50,19 +50,33 @@ window.billReceiveCreateComponent = Vue.extend({
         }
     } else {
       this.title = 'Editando Conta'
-      this.bill = this.$root.$children[0].billsReceive[this.$route.params.index]
+      var self = this
+      BillReceive.get({id: this.$route.params.id})
+      .then(function(response) {
+          self.bill = response.data;
+      })
   }
 },
   methods: {
-    submit(){
-      if (this.title == 'Criando Conta') {
-        this.$root.$children[0].billsReceive.push(this.bill)
-      } else {
-
+      submit(){
+          var self = this
+          if (this.title == 'Criando Conta') {
+            BillReceive.save({}, this.bill)
+            .then(function(response) {
+                self.$dispatch('changeStatusReceive')
+                self.$router.go({
+                  name: 'bill.receive.list'
+                })
+            })
+        } else {
+            BillReceive.update({id: this.bill.id}, this.bill)
+            .then(function(response) {
+                self.$dispatch('changeStatusReceive')
+                self.$router.go({
+                  name: 'bill.receive.list'
+                })
+            })
+        }
       }
-      this.$router.go({
-        name: 'bill.receive.list'
-      })
-    }
   }
 });
