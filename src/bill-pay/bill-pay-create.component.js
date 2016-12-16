@@ -3,7 +3,7 @@ window.billPayCreateComponent = Vue.extend({
     <form @submit.prevent="submit">
         <h3>{{title}}</h3>
         <label for="date_due">Vencimento</label>
-        <input type="text" v-model="bill.date_due" id="date_due">
+        <input type="text" v-model="bill.date_due | dateFormat" id="date_due">
         <br/>
         <br/>
         <label for="name">Nome</label>
@@ -13,7 +13,7 @@ window.billPayCreateComponent = Vue.extend({
         <br/>
         <br/>
         <label for="value">Valor</label>
-        <input type="text" id="value" v-model="bill.value">
+        <input type="text" id="value" v-model="bill.value | numberCurrency">
         <br/>
         <br/>
         <label for="pago">Paga</label>
@@ -33,31 +33,23 @@ window.billPayCreateComponent = Vue.extend({
           "Colégio",
           "Cartão de Crédito",
         ],
-        bill: {
-          date_due:'',
-          name:'',
-          value: 0
-        }
+        bill: new BillPayClass()
       }
   },
   created() {
     if (this.$route.name == 'bill.pay.create') {
         this.title = 'Criando Conta'
-        this.bill = {
-          date_due:'',
-          name:'',
-          value: 0
-        }
+        this.bill = new BillPayClass()
     } else {
       this.title = 'Editando Conta'
       BillPay.get({id: this.$route.params.id})
-      .then((response) => this.bill = response.data)
+      .then((response) => this.bill = new BillPayClass(response.data))
   }
 },
   methods: {
     submit(){
         if (this.title == 'Criando Conta') {
-          BillPay.save({}, this.bill)
+          BillPay.save({}, this.bill.toJSON())
           .then((response) => {
               this.$dispatch('changeStatusPay')
               this.$router.go({
@@ -65,7 +57,7 @@ window.billPayCreateComponent = Vue.extend({
               })
           })
       } else {
-          BillPay.update({id: this.bill.id}, this.bill)
+          BillPay.update({id: this.bill.id}, this.bill.toJSON())
           .then((response) => {
               this.$dispatch('changeStatusPay')
               this.$router.go({
