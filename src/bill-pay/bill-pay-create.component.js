@@ -7,8 +7,8 @@ window.billPayCreateComponent = Vue.extend({
         <br/>
         <br/>
         <label for="name">Nome</label>
-        <select v-model="bill.name">
-          <option v-for="o in names" :value="o">{{o}}</option>
+        <select v-model="bill.name | nameCase">
+          <option v-for="o in names" :value="o | nameCase">{{o}}</option>
         </select>
         <br/>
         <br/>

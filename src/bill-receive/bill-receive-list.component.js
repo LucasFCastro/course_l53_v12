@@ -22,9 +22,9 @@ window.billReceiveListComponent = Vue.extend({
       <tbody>
         <tr v-for="bill in bills">
           <td>{{bill.id}}</td>
-          <td>{{bill.date_due}}</td>
-          <td>{{bill.name}}</td>
-          <td>{{bill.value | currency 'R$ '}}</td>
+          <td>{{bill.date_due | dateFormat 'pt-BR'}}</td>
+          <td>{{bill.name | nameCase}}</td>
+          <td>{{bill.value | numberCurrency 'pt-BR' 'BRL'}}</td>
           <td :class="{'recebida' : bill.done, 'nao-recebida' : !bill.done}">
             {{bill.done | doneLabelReceive}}
           </td>

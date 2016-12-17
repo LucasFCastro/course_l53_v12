@@ -33,17 +33,17 @@ Vue.filter('statusBillReceive', (value) => {
 })
 
 Vue.filter('numberCurrency', {
-    read(value){
+    read(value, loc = 'pt-BR', moeda ='BRL'){
         let number = 0
         if (value && typeof value !== undefined) {
             let numberRegex = value.toString().match(/\d+(\.{1}\d{1,2}){0,1}/g)
             number = numberRegex ? numberRegex[0] : numberRegex
         }
-        var valueFormat = new Intl.NumberFormat('pt-BR', {
+        var valueFormat = new Intl.NumberFormat(loc, {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
             style: 'currency',
-            currency: 'BRL'
+            currency: moeda
         })
         return valueFormat.format(number)
     },
@@ -58,7 +58,7 @@ Vue.filter('numberCurrency', {
 })
 
 Vue.filter('dateFormat', {
-    read(value){
+    read(value, loc = 'pt-BR'){
         if (value && typeof value !== undefined) {
             if (!(value instanceof Date)) {
                 let dateRegex = value.match(/\d{4}\-\d{2}\-\d{2}/g)
@@ -70,7 +70,7 @@ Vue.filter('dateFormat', {
                     return null;
                 }
             }
-            return new Intl.DateTimeFormat('pt-BR').format(value).split(' ')[0]
+            return new Intl.DateTimeFormat(loc).format(value).split(' ')[0]
         }
         return value;
     },
@@ -84,5 +84,14 @@ Vue.filter('dateFormat', {
             }
         }
         return value
+    }
+})
+
+Vue.filter('nameCase', {
+    read(value){
+        return value.toUpperCase()
+    },
+    write(value){
+        return value.toLowerCase()
     }
 })
