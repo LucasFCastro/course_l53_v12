@@ -1,10 +1,7 @@
 'use strict';
 
 window.billPayComponent = Vue.extend({
-    components: {
-        'bill-pay-menu-component': billPayMenuComponent
-    },
-    template: '\n    <style media="screen">\n      .nao-paga {\n        color: red\n      }\n      .sem-conta {\n        color: gray\n      }\n      .nada-a-pagar {\n        color: blue\n      }\n    </style>\n\n    <h1>{{title}}</h1>\n    <h3 :class="{\'sem-conta\': status < 0, \'nada-a-pagar\': status == 0, \'nao-paga\': status > 0}">\n        {{status | statusBillPay}}\n    </h3>\n    <nav>\n      <bill-pay-menu-component></bill-pay-menu-component>\n    </nav>\n    <router-view></router-view>\n  ',
+    template: '\n    <style media="screen">\n      .nao-paga {\n        color: red\n      }\n      .sem-conta {\n        color: gray\n      }\n      .nada-a-pagar {\n        color: blue\n      }\n    </style>\n\n    <div class="section">\n       <div class="container">\n           <h5>{{title}}</h5>\n           <div class="row">\n               <div class="col s6">\n                    <b :class="{\'sem-conta\': status < 0, \'nada-a-pagar\': status == 0, \'nao-paga\': status > 0}">\n                        {{status | statusBillPay}}\n                    </b>\n                </div>\n            </div>\n        </div>\n    </div>\n    <router-view></router-view>\n  ',
 
     data: function data() {
         return {

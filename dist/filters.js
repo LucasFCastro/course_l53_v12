@@ -22,7 +22,7 @@ Vue.filter('statusBillPay', function (value) {
     } else if (value == 0) {
         return 'Nenhuma conta a pagar';
     } else {
-        return 'Existem ' + value + ' contas a serem pagas';
+        return value + ' contas a pagar';
     }
 });
 
@@ -97,9 +97,9 @@ Vue.filter('dateFormat', {
 
 Vue.filter('nameCase', {
     read: function read(value) {
-        return value.toUpperCase();
+        return String(value).toUpperCase();
     },
     write: function write(value) {
-        return value.toLowerCase();
+        return String(value).toLowerCase();
     }
 });

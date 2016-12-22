@@ -18,7 +18,7 @@ Vue.filter('statusBillPay', (value) => {
     } else if(value == 0) {
         return 'Nenhuma conta a pagar'
     } else {
-        return 'Existem '+value+' contas a serem pagas'
+        return value+' contas a pagar'
     }
 })
 
@@ -89,9 +89,9 @@ Vue.filter('dateFormat', {
 
 Vue.filter('nameCase', {
     read(value){
-        return value.toUpperCase()
+        return String(value).toUpperCase()
     },
     write(value){
-        return value.toLowerCase()
+        return String(value).toLowerCase()
     }
 })

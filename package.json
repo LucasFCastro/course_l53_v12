@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "babel src -d dist --watch"
+    "babel": "babel src -d dist --watch",
+    "start": "concurrently \"npm run babel\" \"lite-server\""
   },
   "author": "Lucas",
   "license": "ISC",
   "dependencies": {
+    "materialize-css": "^0.97.8",
     "sweetalert": "^1.1.3",
     "vue": "^1.0.26",
     "vue-resource": "^0.9.3",

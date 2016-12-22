@@ -1,7 +1,4 @@
 window.billPayComponent = Vue.extend({
-  components: {
-    'bill-pay-menu-component': billPayMenuComponent
-  },
   template: `
     <style media="screen">
       .nao-paga {
@@ -15,13 +12,18 @@ window.billPayComponent = Vue.extend({
       }
     </style>
 
-    <h1>{{title}}</h1>
-    <h3 :class="{'sem-conta': status < 0, 'nada-a-pagar': status == 0, 'nao-paga': status > 0}">
-        {{status | statusBillPay}}
-    </h3>
-    <nav>
-      <bill-pay-menu-component></bill-pay-menu-component>
-    </nav>
+    <div class="section">
+       <div class="container">
+           <h5>{{title}}</h5>
+           <div class="row">
+               <div class="col s6">
+                    <b :class="{'sem-conta': status < 0, 'nada-a-pagar': status == 0, 'nao-paga': status > 0}">
+                        {{status | statusBillPay}}
+                    </b>
+                </div>
+            </div>
+        </div>
+    </div>
     <router-view></router-view>
   `,
 
