@@ -1,0 +1,23 @@
+// Material Icons
+@import url(http://fonts.googleapis.com/icon?family=Material+Icons);
+
+//Materialize Color
+@import "node_modules/materialize-css/sass/components/color";
+
+//My variables
+@import "variables";
+
+//Materialize
+@import "node_modules/materialize-css/sass/materialize";
+
+table thead{
+	@extend .cyan, .darken-3, .text-lighten-2, .white-text;
+}
+
+.header-dialog {
+	@extend .cyan, .darken-3, .text-lighten-2, .white-text;
+	padding: 5px;
+}
+.menu-dropdown {
+
+}
