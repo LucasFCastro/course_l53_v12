@@ -1,4 +1,5 @@
-window.billReceiveListComponent = Vue.extend({
+let modalComponent = require('../modal.component');
+module.exports = {
     components: {
         'modal':  modalComponent
     },
@@ -97,4 +98,4 @@ window.billReceiveListComponent = Vue.extend({
               BillReceive.query().then((response) => this.bills = response.data)
           }
       }
-});
+};

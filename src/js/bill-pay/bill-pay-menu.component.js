@@ -1,4 +1,4 @@
-window.billPayMenuComponent = Vue.extend({
+module.exports = {
   template: `
     <ul>
       <li v-for="o in menus">
@@ -14,4 +14,4 @@ window.billPayMenuComponent = Vue.extend({
       ]
     }
   }
-});
+};

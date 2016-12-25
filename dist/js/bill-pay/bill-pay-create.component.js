@@ -1,6 +1,6 @@
 "use strict";
 
-window.billPayCreateComponent = Vue.extend({
+module.exports = {
     template: "\n  <div class=\"container\">\n  <div class=\"row\">\n  <div class=\"col s12\">\n  <div class=\"card z-depth-3\">\n\n      <form @submit.prevent=\"submit\">\n          <h5 class=\"header-dialog\">{{title}}</h5>\n          <div class=\"card-content\">\n\n              <div class=\"row\">\n                  <div class=\"input-field col s6\">\n                      <input type=\"text\" v-model=\"bill.date_due | dateFormat\" id=\"date_due\"\n                      placeholder=\"Informe a data\">\n                      <label class=\"active\" for=\"date_due\">Vencimento</label>\n                  </div>\n                  <div class=\"input-field col s6\">\n                      <input type=\"text\" id=\"value\" v-model=\"bill.value | numberCurrency\">\n                      <label class=\"active\" for=\"value\">Valor</label>\n                  </div>\n              </div>\n\n              <div class=\"row\">\n                  <div class=\"input-field col s6\">\n                      <label class=\"active\" for=\"name\">Nome</label>\n                      <select v-model=\"bill.name | nameCase\" class=\"browser-default\">\n                          <option value=\"\" disabled selected>Selecione uma op\xE7\xE3o</option>\n                          <option v-for=\"o in names\" :value=\"o | nameCase\">{{o}}</option>\n                      </select>\n                  </div>\n                  <div class=\"input-field col s6\">\n                    <input type=\"checkbox\" id=\"pago\" v-model=\"bill.done\">\n                    <label for=\"pago\"> Pago?</label>\n                  </div>\n              </div>\n\n              <div class=\"row\">\n                  <div class=\"input-field col s12\">\n                      <input type=\"submit\" value=\"Cadastrar\" class=\"btn btn-primary right waves-effect\">\n                  </div>\n              </div>\n          </div>\n      </form>\n  </div>\n  </div>\n  </div>\n  </div>\n  ",
     data: function data() {
         return {
@@ -49,4 +49,4 @@ window.billPayCreateComponent = Vue.extend({
             }
         }
     }
-});
+};

@@ -1,6 +1,7 @@
 'use strict';
 
-window.billPayListComponent = Vue.extend({
+var modalComponent = require('../modal.component');
+module.exports = {
     components: {
         'modal': modalComponent
     },
@@ -44,4 +45,4 @@ window.billPayListComponent = Vue.extend({
             });
         }
     }
-});
+};

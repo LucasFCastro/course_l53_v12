@@ -1,6 +1,6 @@
 'use strict';
 
-window.billReceiveComponent = Vue.extend({
+module.exports = {
     template: '\n      <div class="container">\n        <h5>{{title}}</h5>\n        <b :class="{\'blue-text\': status < 0, \'green-text\': status == 0, \'red-text\': status > 0}">\n            {{status | statusBillReceive}}\n        </b>\n    </div>\n    <router-view></router-view>\n  ',
 
     data: function data() {
@@ -43,4 +43,4 @@ window.billReceiveComponent = Vue.extend({
             this.$dispatch('changeInfo');
         }
     }
-});
+};

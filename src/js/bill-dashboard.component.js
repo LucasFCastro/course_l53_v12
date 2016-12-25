@@ -1,4 +1,4 @@
-window.billDashboard = Vue.extend({
+module.exports = {
 	template: `
 		<div class="container">
 			<div class="row">
@@ -56,4 +56,4 @@ window.billDashboard = Vue.extend({
 			BillReceive.total().then((response) => this.totalBillReceive = response.data.total)
 		}
 	},
-});
+};

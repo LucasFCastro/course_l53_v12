@@ -1,4 +1,4 @@
-window.billPayComponent = Vue.extend({
+module.exports = {
   template: `
     <div class="container">
        <h5>{{title}}</h5>
@@ -48,4 +48,4 @@ events: {
         this.$dispatch('changeInfo');
     }
   }
-});
+};
