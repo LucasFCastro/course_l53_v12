@@ -1,4 +1,6 @@
-module.exports = {
+import {BillReceive} from '../resources';
+
+export default {
   template: `
       <div class="container">
         <h5>{{title}}</h5>

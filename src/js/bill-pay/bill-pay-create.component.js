@@ -1,5 +1,7 @@
-let BillPayClass = require('../bill-pay-class');
-module.exports = {
+import {BillPay} from '../resources';
+import {BillPayClass} from '../bill-pay-class';
+
+export default {
   template: `
   <div class="container">
   <div class="row">

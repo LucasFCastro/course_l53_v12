@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   template: `
   <style media="screen">
         #sidenav-overlay {

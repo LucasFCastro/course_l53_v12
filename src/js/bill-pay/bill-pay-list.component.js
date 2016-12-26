@@ -1,5 +1,7 @@
-let modalComponent = require('../modal.component');
-module.exports = {
+import {BillPay} from '../resources';
+import modalComponent from '../modal.component';
+
+export default {
     components: {
         'modal':  modalComponent
     },
@@ -50,7 +52,7 @@ module.exports = {
         </div>
     </div>
     <modal :modal="modal">
-        <div slot="content">
+        <div slot="content" v-if="billDelete">
             <h4 class="header-dialog">Mensagem de confirmação</h4>
             <div class="divider"></div>
             <p><strong>Deseja excluir esta conta?</strong></p>

@@ -1,4 +1,6 @@
-module.exports = {
+import {BillPay, BillReceive} from './resources';
+
+export default {
 	template: `
 		<div class="container">
 			<div class="row">

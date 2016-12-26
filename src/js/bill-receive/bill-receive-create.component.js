@@ -1,5 +1,7 @@
-let BillReceiveClass = require('../bill-receive-class');
-module.exports = {
+import {BillReceive} from '../resources';
+import {BillReceiveClass} from '../bill-receive-class';
+
+export default {
   template: `
   <div class="container">
   <div class="row">
