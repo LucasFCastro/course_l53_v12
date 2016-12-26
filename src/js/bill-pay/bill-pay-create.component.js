@@ -1,3 +1,4 @@
+let BillPayClass = require('../bill-pay-class');
 module.exports = {
   template: `
   <div class="container">

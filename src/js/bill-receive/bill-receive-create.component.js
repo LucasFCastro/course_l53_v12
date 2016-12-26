@@ -1,3 +1,4 @@
+let BillReceiveClass = require('../bill-receive-class');
 module.exports = {
   template: `
   <div class="container">

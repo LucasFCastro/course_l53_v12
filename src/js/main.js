@@ -1,3 +1,4 @@
+require('../sass/app.scss');
 require('./filters');
 require('./resources');
 // require('./bill-pay-class');
@@ -68,7 +69,6 @@ require(
 			component: billDashboard
 		}
 	});
-
 	router.start({
 		components: {
 			'bill-component' : billComponent

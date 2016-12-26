@@ -1,9 +1,6 @@
-webpackJsonp([1],[
-/* 0 */,
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */
+webpackJsonp([1],{
+
+/***/ 27:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -34,7 +31,8 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 5 */
+
+/***/ 28:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -65,7 +63,8 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 6 */
+
+/***/ 29:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -116,13 +115,15 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 7 */
-/***/ function(module, exports) {
 
-	"use strict";
+/***/ 30:
+/***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var BillPayClass = __webpack_require__(31);
 	module.exports = {
-	    template: "\n  <div class=\"container\">\n  <div class=\"row\">\n  <div class=\"col s12\">\n  <div class=\"card z-depth-3\">\n\n      <form @submit.prevent=\"submit\">\n          <h5 class=\"header-dialog\">{{title}}</h5>\n          <div class=\"card-content\">\n\n              <div class=\"row\">\n                  <div class=\"input-field col s6\">\n                      <input type=\"text\" v-model=\"bill.date_due | dateFormat\" id=\"date_due\"\n                      placeholder=\"Informe a data\">\n                      <label class=\"active\" for=\"date_due\">Vencimento</label>\n                  </div>\n                  <div class=\"input-field col s6\">\n                      <input type=\"text\" id=\"value\" v-model=\"bill.value | numberCurrency\">\n                      <label class=\"active\" for=\"value\">Valor</label>\n                  </div>\n              </div>\n\n              <div class=\"row\">\n                  <div class=\"input-field col s6\">\n                      <label class=\"active\" for=\"name\">Nome</label>\n                      <select v-model=\"bill.name | nameCase\" class=\"browser-default\">\n                          <option value=\"\" disabled selected>Selecione uma op\xE7\xE3o</option>\n                          <option v-for=\"o in names\" :value=\"o | nameCase\">{{o}}</option>\n                      </select>\n                  </div>\n                  <div class=\"input-field col s6\">\n                    <input type=\"checkbox\" id=\"pago\" v-model=\"bill.done\">\n                    <label for=\"pago\"> Pago?</label>\n                  </div>\n              </div>\n\n              <div class=\"row\">\n                  <div class=\"input-field col s12\">\n                      <input type=\"submit\" value=\"Cadastrar\" class=\"btn btn-primary right waves-effect\">\n                  </div>\n              </div>\n          </div>\n      </form>\n  </div>\n  </div>\n  </div>\n  </div>\n  ",
+	    template: '\n  <div class="container">\n  <div class="row">\n  <div class="col s12">\n  <div class="card z-depth-3">\n\n      <form @submit.prevent="submit">\n          <h5 class="header-dialog">{{title}}</h5>\n          <div class="card-content">\n\n              <div class="row">\n                  <div class="input-field col s6">\n                      <input type="text" v-model="bill.date_due | dateFormat" id="date_due"\n                      placeholder="Informe a data">\n                      <label class="active" for="date_due">Vencimento</label>\n                  </div>\n                  <div class="input-field col s6">\n                      <input type="text" id="value" v-model="bill.value | numberCurrency">\n                      <label class="active" for="value">Valor</label>\n                  </div>\n              </div>\n\n              <div class="row">\n                  <div class="input-field col s6">\n                      <label class="active" for="name">Nome</label>\n                      <select v-model="bill.name | nameCase" class="browser-default">\n                          <option value="" disabled selected>Selecione uma op\xE7\xE3o</option>\n                          <option v-for="o in names" :value="o | nameCase">{{o}}</option>\n                      </select>\n                  </div>\n                  <div class="input-field col s6">\n                    <input type="checkbox" id="pago" v-model="bill.done">\n                    <label for="pago"> Pago?</label>\n                  </div>\n              </div>\n\n              <div class="row">\n                  <div class="input-field col s12">\n                      <input type="submit" value="Cadastrar" class="btn btn-primary right waves-effect">\n                  </div>\n              </div>\n          </div>\n      </form>\n  </div>\n  </div>\n  </div>\n  </div>\n  ',
 	    data: function data() {
 	        return {
 	            title: '',
@@ -173,12 +174,50 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 8 */
+
+/***/ 31:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	module.exports = function () {
+		function BillPayClass() {
+			var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+			_classCallCheck(this, BillPayClass);
+
+			this.date_due = '', this.name = '', this.value = 0;
+			this.done = false;
+			Object.assign(this, data);
+		}
+
+		_createClass(BillPayClass, [{
+			key: 'toJSON',
+			value: function toJSON() {
+				return {
+					date_due: this.date_due,
+					name: this.name,
+					value: this.value,
+					done: this.done
+				};
+			}
+		}]);
+
+		return BillPayClass;
+	}();
+
+/***/ },
+
+/***/ 32:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var modalComponent = __webpack_require__(9);
+	var modalComponent = __webpack_require__(33);
 	module.exports = {
 	    components: {
 	        'modal': modalComponent
@@ -226,7 +265,8 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 9 */
+
+/***/ 33:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -252,7 +292,8 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 10 */
+
+/***/ 34:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -303,13 +344,15 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 11 */
-/***/ function(module, exports) {
 
-	"use strict";
+/***/ 35:
+/***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var BillReceiveClass = __webpack_require__(36);
 	module.exports = {
-	    template: "\n  <div class=\"container\">\n  <div class=\"row\">\n  <div class=\"col s12\">\n  <div class=\"card z-depth-3\">\n        <form @submit.prevent=\"submit\">\n            <h5 class=\"header-dialog\">{{title}}</h5>\n            <div class=\"card-content\">\n                <div class=\"row\">\n                    <div class=\"input-field col s6\">\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" id=\"date_due\"\n                        placeholder=\"Informe a data\">\n                        <label class=\"active\" for=\"date_due\">Vencimento</label>\n                    </div>\n                    <div class=\"input-field col s6\">\n                        <input type=\"text\" id=\"value\" v-model=\"bill.value | numberCurrency\">\n                        <label class=\"active\" for=\"value\">Valor</label>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"input-field col s6\">\n                        <label class=\"active\" for=\"name\">Nome</label>\n                        <select v-model=\"bill.name | nameCase\" class=\"browser-default\">\n                            <option value=\"\" disabled selected>Selecione uma op\xE7\xE3o</option>\n                            <option v-for=\"o in names\" :value=\"o | nameCase\">{{o}}</option>\n                        </select>\n                    </div>\n                    <div class=\"input-field col s6\">\n                      <input type=\"checkbox\" id=\"pago\" v-model=\"bill.done\">\n                      <label for=\"pago\"> Recebida?</label>\n                    </div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"input-field col s12\">\n                        <input type=\"submit\" value=\"Cadastrar\" class=\"btn btn-primary right waves-effect\">\n                    </div>\n                </div>\n            </div>\n        </form>\n    </div>\n    </div>\n    </div>\n    </div>  ",
+	    template: '\n  <div class="container">\n  <div class="row">\n  <div class="col s12">\n  <div class="card z-depth-3">\n        <form @submit.prevent="submit">\n            <h5 class="header-dialog">{{title}}</h5>\n            <div class="card-content">\n                <div class="row">\n                    <div class="input-field col s6">\n                        <input type="text" v-model="bill.date_due | dateFormat" id="date_due"\n                        placeholder="Informe a data">\n                        <label class="active" for="date_due">Vencimento</label>\n                    </div>\n                    <div class="input-field col s6">\n                        <input type="text" id="value" v-model="bill.value | numberCurrency">\n                        <label class="active" for="value">Valor</label>\n                    </div>\n                </div>\n                <div class="row">\n                    <div class="input-field col s6">\n                        <label class="active" for="name">Nome</label>\n                        <select v-model="bill.name | nameCase" class="browser-default">\n                            <option value="" disabled selected>Selecione uma op\xE7\xE3o</option>\n                            <option v-for="o in names" :value="o | nameCase">{{o}}</option>\n                        </select>\n                    </div>\n                    <div class="input-field col s6">\n                      <input type="checkbox" id="pago" v-model="bill.done">\n                      <label for="pago"> Recebida?</label>\n                    </div>\n                </div>\n                <div class="row">\n                    <div class="input-field col s12">\n                        <input type="submit" value="Cadastrar" class="btn btn-primary right waves-effect">\n                    </div>\n                </div>\n            </div>\n        </form>\n    </div>\n    </div>\n    </div>\n    </div>  ',
 	    data: function data() {
 	        return {
 	            title: '',
@@ -355,12 +398,50 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 12 */
+
+/***/ 36:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	module.exports = function () {
+		function BillReceiveClass() {
+			var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+			_classCallCheck(this, BillReceiveClass);
+
+			this.date_due = '', this.name = '', this.value = 0;
+			this.done = false;
+			Object.assign(this, data);
+		}
+
+		_createClass(BillReceiveClass, [{
+			key: 'toJSON',
+			value: function toJSON() {
+				return {
+					date_due: this.date_due,
+					name: this.name,
+					value: this.value,
+					done: this.done
+				};
+			}
+		}]);
+
+		return BillReceiveClass;
+	}();
+
+/***/ },
+
+/***/ 37:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var modalComponent = __webpack_require__(9);
+	var modalComponent = __webpack_require__(33);
 	module.exports = {
 	    components: {
 	        'modal': modalComponent
@@ -407,4 +488,5 @@ webpackJsonp([1],[
 	};
 
 /***/ }
-]);
+
+});
