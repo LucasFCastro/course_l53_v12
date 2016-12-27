@@ -1,10 +1,4 @@
-export default {
-  template: `
-  <style media="screen">
-        #sidenav-overlay {
-        z-index: 996;
-    }
-  </style>
+<template lang="html">
     <ul class="dropdown-content" v-for="o in menus" :id="o.menuId">
         <li v-for="item in o.menusDropdown" class="menu-dropdown">
             <a v-link="{name: item.routeName}">{{item.name}}</a>
@@ -52,40 +46,50 @@ export default {
                             </ul>
                         </div>
                     </li>
-                 </ul>
+                </ul>
             </div>
         </nav>
     </div>
     <router-view></router-view>
-  `,
-  ready(){
-      $('.button-collapse').sideNav()
-      $('.collapsible').collapsible()
-      $('.button-dropdown').dropdown({
-          belowOrigin: true
-      })
-  },
-  methods: {
-      gotoMenu(rota) {
-          $('.button-collapse').sideNav('hide');
-          this.$router.go({
-            name: rota
-          })
-      }
-  },
-  data(){
-    return {
-      menus: [
-        {id: 0, name: "Dashboard", routeName: 'bills.dashboard', menuId: '', menusDropdown: ''},
-        {id: 0, name: "Contas a pagar", routeName: 'bills.pay',menuId: 'bill-pay',  menusDropdown: [
-            {id: 0, name: "Listar Contas", routeName: 'bill.pay.list'},
-            {id: 1, name: "Criar Conta", routeName: 'bill.pay.create'},
-        ]},
-        {id: 1, name: "Contas a receber", routeName: 'bills.receive', menuId: 'bill-receive', menusDropdown: [
-            {id: 0, name: "Listar Contas", routeName: 'bill.receive.list'},
-            {id: 1, name: "Criar Conta", routeName: 'bill.receive.create'},
-        ]},
-    ]
+</template>
+
+<script>
+export default {
+    ready(){
+        $('.button-collapse').sideNav()
+        $('.collapsible').collapsible()
+        $('.button-dropdown').dropdown({
+            belowOrigin: true
+        })
+    },
+    methods: {
+        gotoMenu(rota) {
+            $('.button-collapse').sideNav('hide');
+                this.$router.go({
+                name: rota
+            })
+        }
+    },
+    data(){
+        return {
+            menus: [
+                {id: 0, name: "Dashboard", routeName: 'bills.dashboard', menuId: '', menusDropdown: ''},
+                {id: 0, name: "Contas a pagar", routeName: 'bills.pay',menuId: 'bill-pay',  menusDropdown: [
+                    {id: 0, name: "Listar Contas", routeName: 'bill.pay.list'},
+                    {id: 1, name: "Criar Conta", routeName: 'bill.pay.create'},
+                ]},
+                {id: 1, name: "Contas a receber", routeName: 'bills.receive', menuId: 'bill-receive', menusDropdown: [
+                    {id: 0, name: "Listar Contas", routeName: 'bill.receive.list'},
+                    {id: 1, name: "Criar Conta", routeName: 'bill.receive.create'},
+                ]},
+            ]
+        }
     }
-  }
 };
+</script>
+
+<style media="screen" lang="css" type="text/css">
+    #sidenav-overlay {
+        z-index: 996;
+    }
+</style>

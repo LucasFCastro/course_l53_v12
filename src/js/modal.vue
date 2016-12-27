@@ -1,5 +1,4 @@
-export default {
-    template: `
+<template lang="html">
     <div :id="modal.id" class="modal">
         <div class="modal-content">
             <slot name="content"></slot>
@@ -8,7 +7,10 @@ export default {
             <slot name="footer"></slot>
         </div>
     </div>
-    `,
+</template>
+
+<script>
+export default {
     props: {
         modal: {
             type: Object,
@@ -25,4 +27,8 @@ export default {
             $(`#${id}`).modal();
         });
     }
-};
+}
+</script>
+
+<style lang="css">
+</style>

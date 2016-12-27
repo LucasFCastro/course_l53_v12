@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "09932f303181ff1800a1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f783f8b6b3329ff9732e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -591,35 +591,35 @@
 	
 	var _bill2 = _interopRequireDefault(_bill);
 	
-	var _billDashboard = __webpack_require__(42);
+	var _billDashboard = __webpack_require__(48);
 	
 	var _billDashboard2 = _interopRequireDefault(_billDashboard);
 	
-	var _billPay = __webpack_require__(44);
+	var _billPay = __webpack_require__(50);
 	
 	var _billPay2 = _interopRequireDefault(_billPay);
 	
-	var _billPayList = __webpack_require__(45);
+	var _billPayList = __webpack_require__(51);
 	
 	var _billPayList2 = _interopRequireDefault(_billPayList);
 	
-	var _billPayCreate = __webpack_require__(47);
+	var _billPayCreate = __webpack_require__(53);
 	
 	var _billPayCreate2 = _interopRequireDefault(_billPayCreate);
 	
-	var _billReceive = __webpack_require__(49);
+	var _billReceive = __webpack_require__(55);
 	
 	var _billReceive2 = _interopRequireDefault(_billReceive);
 	
-	var _billReceiveList = __webpack_require__(50);
+	var _billReceiveList = __webpack_require__(56);
 	
 	var _billReceiveList2 = _interopRequireDefault(_billReceiveList);
 	
-	var _billReceiveCreate = __webpack_require__(51);
+	var _billReceiveCreate = __webpack_require__(57);
 	
 	var _billReceiveCreate2 = _interopRequireDefault(_billReceiveCreate);
 	
-	var _vueRouter = __webpack_require__(53);
+	var _vueRouter = __webpack_require__(59);
 	
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 	
@@ -704,7 +704,62 @@
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 3 */,
+/* 3 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+	
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+	
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
 /* 4 */,
 /* 5 */,
 /* 6 */,
@@ -26363,6 +26418,297 @@
 
 /***/ },
 /* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	__webpack_require__(42)
+	__vue_script__ = __webpack_require__(45)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] src\\js\\bill.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(46)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	if (__vue_template__) {
+	(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+	}
+	if (true) {(function () {  module.hot.accept()
+	  var hotAPI = __webpack_require__(47)
+	  hotAPI.install(__webpack_require__(28), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-7ec1b8b4/bill.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(43);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(44)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(43, function() {
+				var newContent = __webpack_require__(43);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#sidenav-overlay {\n    z-index: 996;\n}\n", "", {"version":3,"sources":["/./src/js/bill.vue?962655f2"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA2FA;IACA,aAAA;CACA","file":"bill.vue","sourcesContent":["<template lang=\"html\">\r\n    <ul class=\"dropdown-content\" v-for=\"o in menus\" :id=\"o.menuId\">\r\n        <li v-for=\"item in o.menusDropdown\" class=\"menu-dropdown\">\r\n            <a v-link=\"{name: item.routeName}\">{{item.name}}</a>\r\n        </li>\r\n    </ul>\r\n\r\n    <div class=\"navbar-fixed\">\r\n        <!-- <nav class=\"teal\">-->\r\n        <nav>\r\n            <div class=\"nav-wrapper container\">\r\n                <a href=\"#\" class=\"brand-logo right\">Code Contas</a>\r\n                <a href=\"#\" data-activates=\"nav-mobile\" class=\"button-collapse\">\r\n                    <i class=\"material-icons\">menu</i>\r\n                </a>\r\n\r\n                <ul class=\"left hide-on-med-and-down\">\r\n                    <li v-for=\"o in menus\">\r\n                        <a v-if=\"o.menusDropdown\" class=\"button-dropdown\" :data-activates=\"o.menuId\">\r\n                            {{o.name}} <i class=\"material-icons right\">arrow_drop_down</i>\r\n                        </a>\r\n                        <a v-else v-link=\"{name: o.routeName}\">{{o.name}}</a>\r\n                    </li>\r\n                </ul>\r\n\r\n                <ul id=\"nav-mobile\" class=\"side-nav\">\r\n\r\n                    <li v-for=\"o in menus\">\r\n                        <div v-if=\"!o.menuId\">\r\n                            <a @click.prevent=\"gotoMenu(o.routeName)\">{{o.name}}</a>\r\n                        </div>\r\n                        <div v-else>\r\n                            <ul class=\"collapsible\"  data-collapsible=\"accordion\">\r\n                                <li>\r\n                                    <a class=\"collapsible-header\">\r\n                                        {{o.name}} <i class=\"material-icons right\">arrow_drop_down</i>\r\n                                    </a>\r\n                                    <div class=\"collapsible-body\">\r\n                                        <ul>\r\n                                            <li v-for=\"item in o.menusDropdown\">\r\n                                                <a @click.prevent=\"gotoMenu(item.routeName)\">{{item.name}}</a>\r\n                                            </li>\r\n                                        </ul>\r\n                                    </div>\r\n                                </li>\r\n                            </ul>\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n    <router-view></router-view>\r\n</template>\r\n\r\n<script>\r\nexport default {\r\n    ready(){\r\n        $('.button-collapse').sideNav()\r\n        $('.collapsible').collapsible()\r\n        $('.button-dropdown').dropdown({\r\n            belowOrigin: true\r\n        })\r\n    },\r\n    methods: {\r\n        gotoMenu(rota) {\r\n            $('.button-collapse').sideNav('hide');\r\n                this.$router.go({\r\n                name: rota\r\n            })\r\n        }\r\n    },\r\n    data(){\r\n        return {\r\n            menus: [\r\n                {id: 0, name: \"Dashboard\", routeName: 'bills.dashboard', menuId: '', menusDropdown: ''},\r\n                {id: 0, name: \"Contas a pagar\", routeName: 'bills.pay',menuId: 'bill-pay',  menusDropdown: [\r\n                    {id: 0, name: \"Listar Contas\", routeName: 'bill.pay.list'},\r\n                    {id: 1, name: \"Criar Conta\", routeName: 'bill.pay.create'},\r\n                ]},\r\n                {id: 1, name: \"Contas a receber\", routeName: 'bills.receive', menuId: 'bill-receive', menusDropdown: [\r\n                    {id: 0, name: \"Listar Contas\", routeName: 'bill.receive.list'},\r\n                    {id: 1, name: \"Criar Conta\", routeName: 'bill.receive.create'},\r\n                ]},\r\n            ]\r\n        }\r\n    }\r\n};\r\n</script>\r\n\r\n<style media=\"screen\" lang=\"css\" type=\"text/css\">\r\n    #sidenav-overlay {\r\n        z-index: 996;\r\n    }\r\n</style>\r\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+	
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+	
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+	
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+	
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+	
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+	
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+	
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+	
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+	
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+	
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+	
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+	
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+	
+		update(obj);
+	
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+	
+	var replaceText = (function () {
+		var textStore = [];
+	
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+	
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+	
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+	
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+	
+		if (media) {
+			styleElement.setAttribute("media", media);
+		}
+	
+		if (sourceMap) {
+			// https://developer.chrome.com/devtools/docs/javascript-debugging
+			// this makes source maps inside style tags work properly in Chrome
+			css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */';
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+	
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+
+/***/ },
+/* 45 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26371,7 +26717,6 @@
 	    value: true
 	});
 	exports.default = {
-	    template: '\n  <style media="screen">\n        #sidenav-overlay {\n        z-index: 996;\n    }\n  </style>\n    <ul class="dropdown-content" v-for="o in menus" :id="o.menuId">\n        <li v-for="item in o.menusDropdown" class="menu-dropdown">\n            <a v-link="{name: item.routeName}">{{item.name}}</a>\n        </li>\n    </ul>\n\n    <div class="navbar-fixed">\n        <!-- <nav class="teal">-->\n        <nav>\n            <div class="nav-wrapper container">\n                <a href="#" class="brand-logo right">Code Contas</a>\n                <a href="#" data-activates="nav-mobile" class="button-collapse">\n                    <i class="material-icons">menu</i>\n                </a>\n\n                <ul class="left hide-on-med-and-down">\n                    <li v-for="o in menus">\n                        <a v-if="o.menusDropdown" class="button-dropdown" :data-activates="o.menuId">\n                            {{o.name}} <i class="material-icons right">arrow_drop_down</i>\n                        </a>\n                        <a v-else v-link="{name: o.routeName}">{{o.name}}</a>\n                    </li>\n                </ul>\n\n                <ul id="nav-mobile" class="side-nav">\n\n                    <li v-for="o in menus">\n                        <div v-if="!o.menuId">\n                            <a @click.prevent="gotoMenu(o.routeName)">{{o.name}}</a>\n                        </div>\n                        <div v-else>\n                            <ul class="collapsible"  data-collapsible="accordion">\n                                <li>\n                                    <a class="collapsible-header">\n                                        {{o.name}} <i class="material-icons right">arrow_drop_down</i>\n                                    </a>\n                                    <div class="collapsible-body">\n                                        <ul>\n                                            <li v-for="item in o.menusDropdown">\n                                                <a @click.prevent="gotoMenu(item.routeName)">{{item.name}}</a>\n                                            </li>\n                                        </ul>\n                                    </div>\n                                </li>\n                            </ul>\n                        </div>\n                    </li>\n                 </ul>\n            </div>\n        </nav>\n    </div>\n    <router-view></router-view>\n  ',
 	    ready: function ready() {
 	        $('.button-collapse').sideNav();
 	        $('.collapsible').collapsible();
@@ -26396,7 +26741,318 @@
 	};
 
 /***/ },
-/* 42 */
+/* 46 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<ul class=\"dropdown-content\" v-for=\"o in menus\" :id=\"o.menuId\">\n    <li v-for=\"item in o.menusDropdown\" class=\"menu-dropdown\">\n        <a v-link=\"{name: item.routeName}\">{{item.name}}</a>\n    </li>\n</ul>\n\n<div class=\"navbar-fixed\">\n    <!-- <nav class=\"teal\">-->\n    <nav>\n        <div class=\"nav-wrapper container\">\n            <a href=\"#\" class=\"brand-logo right\">Code Contas</a>\n            <a href=\"#\" data-activates=\"nav-mobile\" class=\"button-collapse\">\n                <i class=\"material-icons\">menu</i>\n            </a>\n\n            <ul class=\"left hide-on-med-and-down\">\n                <li v-for=\"o in menus\">\n                    <a v-if=\"o.menusDropdown\" class=\"button-dropdown\" :data-activates=\"o.menuId\">\n                        {{o.name}} <i class=\"material-icons right\">arrow_drop_down</i>\n                    </a>\n                    <a v-else v-link=\"{name: o.routeName}\">{{o.name}}</a>\n                </li>\n            </ul>\n\n            <ul id=\"nav-mobile\" class=\"side-nav\">\n\n                <li v-for=\"o in menus\">\n                    <div v-if=\"!o.menuId\">\n                        <a @click.prevent=\"gotoMenu(o.routeName)\">{{o.name}}</a>\n                    </div>\n                    <div v-else>\n                        <ul class=\"collapsible\"  data-collapsible=\"accordion\">\n                            <li>\n                                <a class=\"collapsible-header\">\n                                    {{o.name}} <i class=\"material-icons right\">arrow_drop_down</i>\n                                </a>\n                                <div class=\"collapsible-body\">\n                                    <ul>\n                                        <li v-for=\"item in o.menusDropdown\">\n                                            <a @click.prevent=\"gotoMenu(item.routeName)\">{{item.name}}</a>\n                                        </li>\n                                    </ul>\n                                </div>\n                            </li>\n                        </ul>\n                    </div>\n                </li>\n            </ul>\n        </div>\n    </nav>\n</div>\n<router-view></router-view>\n";
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	var Vue // late bind
+	var map = Object.create(null)
+	var shimmed = false
+	var isBrowserify = false
+	
+	/**
+	 * Determine compatibility and apply patch.
+	 *
+	 * @param {Function} vue
+	 * @param {Boolean} browserify
+	 */
+	
+	exports.install = function (vue, browserify) {
+	  if (shimmed) return
+	  shimmed = true
+	
+	  Vue = vue
+	  isBrowserify = browserify
+	
+	  exports.compatible = !!Vue.internalDirectives
+	  if (!exports.compatible) {
+	    console.warn(
+	      '[HMR] vue-loader hot reload is only compatible with ' +
+	      'Vue.js 1.0.0+.'
+	    )
+	    return
+	  }
+	
+	  // patch view directive
+	  patchView(Vue.internalDirectives.component)
+	  console.log('[HMR] Vue component hot reload shim applied.')
+	  // shim router-view if present
+	  var routerView = Vue.elementDirective('router-view')
+	  if (routerView) {
+	    patchView(routerView)
+	    console.log('[HMR] vue-router <router-view> hot reload shim applied.')
+	  }
+	}
+	
+	/**
+	 * Shim the view directive (component or router-view).
+	 *
+	 * @param {Object} View
+	 */
+	
+	function patchView (View) {
+	  var unbuild = View.unbuild
+	  View.unbuild = function (defer) {
+	    if (!this.hotUpdating) {
+	      var prevComponent = this.childVM && this.childVM.constructor
+	      removeView(prevComponent, this)
+	      // defer = true means we are transitioning to a new
+	      // Component. Register this new component to the list.
+	      if (defer) {
+	        addView(this.Component, this)
+	      }
+	    }
+	    // call original
+	    return unbuild.call(this, defer)
+	  }
+	}
+	
+	/**
+	 * Add a component view to a Component's hot list
+	 *
+	 * @param {Function} Component
+	 * @param {Directive} view - view directive instance
+	 */
+	
+	function addView (Component, view) {
+	  var id = Component && Component.options.hotID
+	  if (id) {
+	    if (!map[id]) {
+	      map[id] = {
+	        Component: Component,
+	        views: [],
+	        instances: []
+	      }
+	    }
+	    map[id].views.push(view)
+	  }
+	}
+	
+	/**
+	 * Remove a component view from a Component's hot list
+	 *
+	 * @param {Function} Component
+	 * @param {Directive} view - view directive instance
+	 */
+	
+	function removeView (Component, view) {
+	  var id = Component && Component.options.hotID
+	  if (id) {
+	    map[id].views.$remove(view)
+	  }
+	}
+	
+	/**
+	 * Create a record for a hot module, which keeps track of its construcotr,
+	 * instnaces and views (component directives or router-views).
+	 *
+	 * @param {String} id
+	 * @param {Object} options
+	 */
+	
+	exports.createRecord = function (id, options) {
+	  if (typeof options === 'function') {
+	    options = options.options
+	  }
+	  if (typeof options.el !== 'string' && typeof options.data !== 'object') {
+	    makeOptionsHot(id, options)
+	    map[id] = {
+	      Component: null,
+	      views: [],
+	      instances: []
+	    }
+	  }
+	}
+	
+	/**
+	 * Make a Component options object hot.
+	 *
+	 * @param {String} id
+	 * @param {Object} options
+	 */
+	
+	function makeOptionsHot (id, options) {
+	  options.hotID = id
+	  injectHook(options, 'created', function () {
+	    var record = map[id]
+	    if (!record.Component) {
+	      record.Component = this.constructor
+	    }
+	    record.instances.push(this)
+	  })
+	  injectHook(options, 'beforeDestroy', function () {
+	    map[id].instances.$remove(this)
+	  })
+	}
+	
+	/**
+	 * Inject a hook to a hot reloadable component so that
+	 * we can keep track of it.
+	 *
+	 * @param {Object} options
+	 * @param {String} name
+	 * @param {Function} hook
+	 */
+	
+	function injectHook (options, name, hook) {
+	  var existing = options[name]
+	  options[name] = existing
+	    ? Array.isArray(existing)
+	      ? existing.concat(hook)
+	      : [existing, hook]
+	    : [hook]
+	}
+	
+	/**
+	 * Update a hot component.
+	 *
+	 * @param {String} id
+	 * @param {Object|null} newOptions
+	 * @param {String|null} newTemplate
+	 */
+	
+	exports.update = function (id, newOptions, newTemplate) {
+	  var record = map[id]
+	  // force full-reload if an instance of the component is active but is not
+	  // managed by a view
+	  if (!record || (record.instances.length && !record.views.length)) {
+	    console.log('[HMR] Root or manually-mounted instance modified. Full reload may be required.')
+	    if (!isBrowserify) {
+	      window.location.reload()
+	    } else {
+	      // browserify-hmr somehow sends incomplete bundle if we reload here
+	      return
+	    }
+	  }
+	  if (!isBrowserify) {
+	    // browserify-hmr already logs this
+	    console.log('[HMR] Updating component: ' + format(id))
+	  }
+	  var Component = record.Component
+	  // update constructor
+	  if (newOptions) {
+	    // in case the user exports a constructor
+	    Component = record.Component = typeof newOptions === 'function'
+	      ? newOptions
+	      : Vue.extend(newOptions)
+	    makeOptionsHot(id, Component.options)
+	  }
+	  if (newTemplate) {
+	    Component.options.template = newTemplate
+	  }
+	  // handle recursive lookup
+	  if (Component.options.name) {
+	    Component.options.components[Component.options.name] = Component
+	  }
+	  // reset constructor cached linker
+	  Component.linker = null
+	  // reload all views
+	  record.views.forEach(function (view) {
+	    updateView(view, Component)
+	  })
+	  // flush devtools
+	  if (window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
+	    window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit('flush')
+	  }
+	}
+	
+	/**
+	 * Update a component view instance
+	 *
+	 * @param {Directive} view
+	 * @param {Function} Component
+	 */
+	
+	function updateView (view, Component) {
+	  if (!view._bound) {
+	    return
+	  }
+	  view.Component = Component
+	  view.hotUpdating = true
+	  // disable transitions
+	  view.vm._isCompiled = false
+	  // save state
+	  var state = extractState(view.childVM)
+	  // remount, make sure to disable keep-alive
+	  var keepAlive = view.keepAlive
+	  view.keepAlive = false
+	  view.mountComponent()
+	  view.keepAlive = keepAlive
+	  // restore state
+	  restoreState(view.childVM, state, true)
+	  // re-eanble transitions
+	  view.vm._isCompiled = true
+	  view.hotUpdating = false
+	}
+	
+	/**
+	 * Extract state from a Vue instance.
+	 *
+	 * @param {Vue} vm
+	 * @return {Object}
+	 */
+	
+	function extractState (vm) {
+	  return {
+	    cid: vm.constructor.cid,
+	    data: vm.$data,
+	    children: vm.$children.map(extractState)
+	  }
+	}
+	
+	/**
+	 * Restore state to a reloaded Vue instance.
+	 *
+	 * @param {Vue} vm
+	 * @param {Object} state
+	 */
+	
+	function restoreState (vm, state, isRoot) {
+	  var oldAsyncConfig
+	  if (isRoot) {
+	    // set Vue into sync mode during state rehydration
+	    oldAsyncConfig = Vue.config.async
+	    Vue.config.async = false
+	  }
+	  // actual restore
+	  if (isRoot || !vm._props) {
+	    vm.$data = state.data
+	  } else {
+	    Object.keys(state.data).forEach(function (key) {
+	      if (!vm._props[key]) {
+	        // for non-root, only restore non-props fields
+	        vm.$data[key] = state.data[key]
+	      }
+	    })
+	  }
+	  // verify child consistency
+	  var hasSameChildren = vm.$children.every(function (c, i) {
+	    return state.children[i] && state.children[i].cid === c.constructor.cid
+	  })
+	  if (hasSameChildren) {
+	    // rehydrate children
+	    vm.$children.forEach(function (c, i) {
+	      restoreState(c, state.children[i])
+	    })
+	  }
+	  if (isRoot) {
+	    Vue.config.async = oldAsyncConfig
+	  }
+	}
+	
+	function format (id) {
+	  var match = id.match(/[^\/]+\.vue$/)
+	  return match ? match[0] : id
+	}
+
+
+/***/ },
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26405,7 +27061,7 @@
 		value: true
 	});
 	
-	var _resources = __webpack_require__(43);
+	var _resources = __webpack_require__(49);
 	
 	exports.default = {
 		template: '\n\t\t<div class="container">\n\t\t\t<div class="row">\n\t\t\t\t<div class="col s12">\n\t\t\t\t\t<h5 class="center"><i class="material-icons">dashboard</i>Dashboard</h5>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class="row">\n\t\t\t\t<div class="col s4">\n\t\t\t\t\t<div class="card red hoverable">\n\t\t\t\t\t\t<div class="card-content">\n\t\t\t\t\t\t\t<p><i class="material-icons">indeterminate_check_box</i>Total de contas a pagar</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="card-action white red-text">\n\t\t\t\t\t\t\t<h4>{{ totalBillPay | currency \'R$ \'}}</h4>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="col s4">\n\t\t\t\t\t<div class="card green hoverable">\n\t\t\t\t\t\t<div class="card-content">\n\t\t\t\t\t\t\t<p><i class="material-icons">add_box</i>Total de contas a receber</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="card-action white green-text">\n\t\t\t\t\t\t\t<h4>{{ totalBillReceive | currency \'R$ \'}}</h4>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="col s4">\n\t\t\t\t\t<div class="card blue hoverable">\n\t\t\t\t\t\t<div class="card-content">\n\t\t\t\t\t\t\t<p><i class="material-icons">monetization_on</i>Saldo (Receber - Pagar)</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="card-action white blue-text">\n\t\t\t\t\t\t\t<h4>{{ totalBillReceive - totalBillPay | currency \'R$ \'}}</h4>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\n\t',
@@ -26433,7 +27089,7 @@
 	};
 
 /***/ },
-/* 43 */
+/* 49 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26461,7 +27117,7 @@
 	exports.BillReceive = BillReceive;
 
 /***/ },
-/* 44 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26470,7 +27126,7 @@
 	    value: true
 	});
 	
-	var _resources = __webpack_require__(43);
+	var _resources = __webpack_require__(49);
 	
 	exports.default = {
 	    template: '\n    <div class="container">\n       <h5>{{title}}</h5>\n        <b :class="{\'blue-text\': status < 0, \'green-text\': status == 0, \'red-text\': status > 0}">\n            {{status | statusBillPay}}\n        </b>\n    </div>\n    <router-view></router-view>\n  ',
@@ -26518,7 +27174,7 @@
 	};
 
 /***/ },
-/* 45 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26527,9 +27183,9 @@
 	    value: true
 	});
 	
-	var _resources = __webpack_require__(43);
+	var _resources = __webpack_require__(49);
 	
-	var _modal = __webpack_require__(46);
+	var _modal = __webpack_require__(52);
 	
 	var _modal2 = _interopRequireDefault(_modal);
 	
@@ -26582,7 +27238,7 @@
 	};
 
 /***/ },
-/* 46 */
+/* 52 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26611,7 +27267,7 @@
 	};
 
 /***/ },
-/* 47 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26620,9 +27276,9 @@
 	    value: true
 	});
 	
-	var _resources = __webpack_require__(43);
+	var _resources = __webpack_require__(49);
 	
-	var _billPayClass = __webpack_require__(48);
+	var _billPayClass = __webpack_require__(54);
 	
 	exports.default = {
 	    template: '\n  <div class="container">\n  <div class="row">\n  <div class="col s12">\n  <div class="card z-depth-3">\n\n      <form @submit.prevent="submit">\n          <h5 class="header-dialog">{{title}}</h5>\n          <div class="card-content">\n\n              <div class="row">\n                  <div class="input-field col s6">\n                      <input type="text" v-model="bill.date_due | dateFormat" id="date_due"\n                      placeholder="Informe a data">\n                      <label class="active" for="date_due">Vencimento</label>\n                  </div>\n                  <div class="input-field col s6">\n                      <input type="text" id="value" v-model="bill.value | numberCurrency">\n                      <label class="active" for="value">Valor</label>\n                  </div>\n              </div>\n\n              <div class="row">\n                  <div class="input-field col s6">\n                      <label class="active" for="name">Nome</label>\n                      <select v-model="bill.name | nameCase" class="browser-default">\n                          <option value="" disabled selected>Selecione uma op\xE7\xE3o</option>\n                          <option v-for="o in names" :value="o | nameCase">{{o}}</option>\n                      </select>\n                  </div>\n                  <div class="input-field col s6">\n                    <input type="checkbox" id="pago" v-model="bill.done">\n                    <label for="pago"> Pago?</label>\n                  </div>\n              </div>\n\n              <div class="row">\n                  <div class="input-field col s12">\n                      <input type="submit" value="Cadastrar" class="btn btn-primary right waves-effect">\n                  </div>\n              </div>\n          </div>\n      </form>\n  </div>\n  </div>\n  </div>\n  </div>\n  ',
@@ -26676,7 +27332,7 @@
 	};
 
 /***/ },
-/* 48 */
+/* 54 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26716,7 +27372,7 @@
 	}();
 
 /***/ },
-/* 49 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26725,7 +27381,7 @@
 	    value: true
 	});
 	
-	var _resources = __webpack_require__(43);
+	var _resources = __webpack_require__(49);
 	
 	exports.default = {
 	    template: '\n      <div class="container">\n        <h5>{{title}}</h5>\n        <b :class="{\'blue-text\': status < 0, \'green-text\': status == 0, \'red-text\': status > 0}">\n            {{status | statusBillReceive}}\n        </b>\n    </div>\n    <router-view></router-view>\n  ',
@@ -26773,7 +27429,7 @@
 	};
 
 /***/ },
-/* 50 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26782,9 +27438,9 @@
 	    value: true
 	});
 	
-	var _resources = __webpack_require__(43);
+	var _resources = __webpack_require__(49);
 	
-	var _modal = __webpack_require__(46);
+	var _modal = __webpack_require__(52);
 	
 	var _modal2 = _interopRequireDefault(_modal);
 	
@@ -26836,7 +27492,7 @@
 	};
 
 /***/ },
-/* 51 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26845,9 +27501,9 @@
 	    value: true
 	});
 	
-	var _resources = __webpack_require__(43);
+	var _resources = __webpack_require__(49);
 	
-	var _billReceiveClass = __webpack_require__(52);
+	var _billReceiveClass = __webpack_require__(58);
 	
 	exports.default = {
 	    template: '\n  <div class="container">\n  <div class="row">\n  <div class="col s12">\n  <div class="card z-depth-3">\n        <form @submit.prevent="submit">\n            <h5 class="header-dialog">{{title}}</h5>\n            <div class="card-content">\n                <div class="row">\n                    <div class="input-field col s6">\n                        <input type="text" v-model="bill.date_due | dateFormat" id="date_due"\n                        placeholder="Informe a data">\n                        <label class="active" for="date_due">Vencimento</label>\n                    </div>\n                    <div class="input-field col s6">\n                        <input type="text" id="value" v-model="bill.value | numberCurrency">\n                        <label class="active" for="value">Valor</label>\n                    </div>\n                </div>\n                <div class="row">\n                    <div class="input-field col s6">\n                        <label class="active" for="name">Nome</label>\n                        <select v-model="bill.name | nameCase" class="browser-default">\n                            <option value="" disabled selected>Selecione uma op\xE7\xE3o</option>\n                            <option v-for="o in names" :value="o | nameCase">{{o}}</option>\n                        </select>\n                    </div>\n                    <div class="input-field col s6">\n                      <input type="checkbox" id="pago" v-model="bill.done">\n                      <label for="pago"> Recebida?</label>\n                    </div>\n                </div>\n                <div class="row">\n                    <div class="input-field col s12">\n                        <input type="submit" value="Cadastrar" class="btn btn-primary right waves-effect">\n                    </div>\n                </div>\n            </div>\n        </form>\n    </div>\n    </div>\n    </div>\n    </div>  ',
@@ -26896,7 +27552,7 @@
 	};
 
 /***/ },
-/* 52 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -26936,7 +27592,7 @@
 	}();
 
 /***/ },
-/* 53 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!

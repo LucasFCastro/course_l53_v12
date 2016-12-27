@@ -1,15 +1,13 @@
-import {BillReceive} from '../resources';
-import {BillReceiveClass} from '../bill-receive-class';
+<template lang="html">
+    <div class="container">
+    <div class="row">
+    <div class="col s12">
+    <div class="card z-depth-3">
 
-export default {
-  template: `
-  <div class="container">
-  <div class="row">
-  <div class="col s12">
-  <div class="card z-depth-3">
         <form @submit.prevent="submit">
             <h5 class="header-dialog">{{title}}</h5>
             <div class="card-content">
+
                 <div class="row">
                     <div class="input-field col s6">
                         <input type="text" v-model="bill.date_due | dateFormat" id="date_due"
@@ -21,6 +19,7 @@ export default {
                         <label class="active" for="value">Valor</label>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="input-field col s6">
                         <label class="active" for="name">Nome</label>
@@ -31,9 +30,10 @@ export default {
                     </div>
                     <div class="input-field col s6">
                       <input type="checkbox" id="pago" v-model="bill.done">
-                      <label for="pago"> Recebida?</label>
+                      <label for="pago"> Pago?</label>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="submit" value="Cadastrar" class="btn btn-primary right waves-effect">
@@ -44,49 +44,65 @@ export default {
     </div>
     </div>
     </div>
-    </div>  `,
+    </div>
+</template>
+
+<script>
+import {BillPay} from '../resources';
+import {BillPayClass} from '../bill-pay-class';
+
+export default {
   data() {
       return {
         title: '',
         names: [
-          "Aula de Matemática",
-          "Aula de Lógica Matemácita",
-          "Aulão ENEM",
-          "Site Pessoal",
-          "Licença Sistema de Laboratório",
+          "Conta de Luz",
+          "Conta de Água",
+          "Conta de Telefone",
+          "Colégio",
+          "Cartão de Crédito",
         ],
-        bill: new BillReceiveClass()
+        bill: new BillPayClass()
       }
   },
   created() {
-    if (this.$route.name == 'bill.receive.create') {
+    if (this.$route.name == 'bill.pay.create') {
         this.title = 'Criando Conta'
-        this.bill = new BillReceiveClass()
+        this.bill = new BillPayClass()
     } else {
       this.title = 'Editando Conta'
-      BillReceive.get({id: this.$route.params.id})
-      .then((response) => this.bill = new BillReceiveClass(response.data))
+      BillPay.get({id: this.$route.params.id})
+      .then((response) => this.bill = new BillPayClass(response.data))
   }
+    $(document).ready(function() {
+        $('select').material_select();
+    });
 },
   methods: {
-      submit(){
-          if (this.title == 'Criando Conta') {
-            BillReceive.save({}, this.bill.toJSON())
-            .then((response) => {
-                this.$dispatch('changeStatusReceive')
-                this.$router.go({
-                  name: 'bill.receive.list'
-                })
-            })
-        } else {
-            BillReceive.update({id: this.bill.id}, this.bill.toJSON())
-            .then((response) => {
-                this.$dispatch('changeStatusReceive')
-                this.$router.go({
-                  name: 'bill.receive.list'
-                })
-            })
-        }
+    submit(){
+        if (this.title == 'Criando Conta') {
+          BillPay.save({}, this.bill.toJSON())
+          .then((response) => {
+              swal("Inclusão!", "Conta incluída com sucesso.", "success")
+              this.$dispatch('changeStatusPay')
+              this.$router.go({
+                name: 'bill.pay.list'
+              })
+          })
+      } else {
+          BillPay.update({id: this.bill.id}, this.bill.toJSON())
+          .then((response) => {
+              swal("Alteração!", "Conta atualizada com sucesso.", "success")
+              this.$dispatch('changeStatusPay')
+              this.$router.go({
+                name: 'bill.pay.list'
+              })
+          })
       }
+    }
   }
-};
+}
+</script>
+
+<style lang="css">
+</style>

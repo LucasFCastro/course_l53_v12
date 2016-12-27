@@ -1,12 +1,12 @@
 import './bootstrap';
-import billComponent from './bill.component';
-import billDashboard from './bill-dashboard.component';
-import billPayComponent from './bill-pay/bill-pay.component';
-import billPayListComponent from './bill-pay/bill-pay-list.component';
-import billPayCreateComponent from './bill-pay/bill-pay-create.component';
-import billReceiveComponent from './bill-receive/bill-receive.component';
-import billReceiveListComponent from './bill-receive/bill-receive-list.component';
-import billReceiveCreateComponent from './bill-receive/bill-receive-create.component';
+import billComponent from './bill.vue';
+import billDashboard from './bill-dashboard.vue';
+import billPayComponent from './bill-pay/bill-pay.vue';
+import billPayListComponent from './bill-pay/bill-pay-list.vue';
+import billPayCreateComponent from './bill-pay/bill-pay-create.vue';
+import billReceiveComponent from './bill-receive/bill-receive.vue';
+import billReceiveListComponent from './bill-receive/bill-receive-list.vue';
+import billReceiveCreateComponent from './bill-receive/bill-receive-create.vue';
 import VueRouter from 'vue-router';
 
 let router = new VueRouter();

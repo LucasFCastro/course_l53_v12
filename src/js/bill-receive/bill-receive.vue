@@ -1,24 +1,25 @@
-import {BillPay} from '../resources';
+<template lang="html">
+    <div class="container">
+      <h5>{{title}}</h5>
+      <b :class="{'blue-text': status < 0, 'green-text': status == 0, 'red-text': status > 0}">
+          {{status | statusBillReceive}}
+      </b>
+  </div>
+  <router-view></router-view>
+</template>
+
+<script>
+import {BillReceive} from '../resources';
 
 export default {
-  template: `
-    <div class="container">
-       <h5>{{title}}</h5>
-        <b :class="{'blue-text': status < 0, 'green-text': status == 0, 'red-text': status > 0}">
-            {{status | statusBillPay}}
-        </b>
-    </div>
-    <router-view></router-view>
-  `,
-
   data() {
     return {
-      title: "Contas a Pagar",
+      title: "Contas a Receber",
       status: false,
     }
   },
     created() {
-        this.$dispatch('changeStatusPay')
+        this.$dispatch('changeStatusReceive')
     },
 
     methods: {
@@ -39,15 +40,21 @@ export default {
         },
 
         updateStatus(){
-            BillPay.query().then((response) => this.calculateStatus(response.data))
+            BillReceive.query().then((response) => this.calculateStatus(response.data))
         },
 
     },
 
 events: {
-    changeStatusPay() {
+
+    changeStatusReceive() {
         this.updateStatus()
         this.$dispatch('changeInfo');
     }
-  }
+}
 };
+
+</script>
+
+<style lang="css">
+</style>

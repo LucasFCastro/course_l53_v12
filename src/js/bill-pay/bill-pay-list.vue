@@ -1,11 +1,4 @@
-import {BillPay} from '../resources';
-import modalComponent from '../modal.component';
-
-export default {
-    components: {
-        'modal':  modalComponent
-    },
-  template: `
+<template lang="html">
     <div class="container">
         <div class="row">
             <div class="col s12">
@@ -68,7 +61,16 @@ export default {
             <button class="btn btn-flat waves-effect grey lighten-2 waves-red modal-close modal-action">Cancelar</button>
         </div>
     </modal>
-  `,
+</template>
+
+<script>
+import {BillPay} from '../resources';
+import modalComponent from '../modal.vue';
+
+export default {
+    components: {
+        'modal':  modalComponent
+    },
   data() {
     return {
       bills: [],
@@ -103,4 +105,8 @@ export default {
             })
         }
     }
-};
+}
+</script>
+
+<style lang="css">
+</style>
