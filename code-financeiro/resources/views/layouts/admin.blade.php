@@ -16,8 +16,10 @@
 </head>
 <body>
     <div id="app">
-        @if (Auth::check())
-            <?php
+
+        <header>
+            @if (Auth::check())
+                <?php
                 $menuConfig = [
                     'nameApp' => 'Code Financeiro Admin',
                     'nameUser' => Auth::user()->name,
@@ -61,10 +63,23 @@
                     'urlLogout' => env('URL_ADMIN_LOGOUT'),
                     'csrfToken' => csrf_token()
                 ];
-             ?>
-            <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
-        @endif
-        @yield('content')
+                ?>
+                <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
+            @endif
+        </header>
+
+        <main>
+            @yield('content')
+        </main>
+
+        <footer class="page-footer" style="padding-top: 0px;">
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2014 Copyright Lucas Castro
+                    <a class="grey-text text-lighten-4 right" href="#!">Lucas Castro System</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Scripts -->
