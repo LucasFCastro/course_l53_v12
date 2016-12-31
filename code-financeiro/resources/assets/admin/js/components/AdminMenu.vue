@@ -3,12 +3,12 @@
 		<input type="hidden" name="_token" :value="config.csrfToken">
 	</form>
     <ul class="dropdown-content" v-for="o in config.menus" :id="o.menuId">
-        <li v-for="item in o.menusDropdown" class="menu-dropdown">
+        <li v-for="item in o.menusDropdown">
             <a :href=item.url>{{ item.name }}</a>
         </li>
     </ul>
     <ul id="dropdown-logout" class="dropdown-content">
-        <li class="menu-dropdown">
+        <li>
             <a :href="config.urlLogout" @click.prevent="gotoLogout()">Sair</a>
         </li>
     </ul>
@@ -68,7 +68,7 @@
 								</a>
 								<div class="collapsible-body">
 									<ul>
-										<li class="menu-dropdown">
+										<li>
 											<a :href="config.urlLogout" @click.prevent="gotoLogout()">Sair</a>
 										</li>
 									</ul>
