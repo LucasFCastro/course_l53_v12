@@ -21,6 +21,11 @@ Route::get('/user1',function(){
     return "Usuário ADMIN logado!";
 });
 
+Route::get('/sair',function(){
+    \Illuminate\Support\Facades\Auth::logout();
+    return Redirect::route('admin.login');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,7 +36,7 @@ Route::get('/home', function(){
 });
 
 Route::group([
-    'prefix' => 'admin', 
+    'prefix' => 'admin',
     'as' => 'admin.'
     ], function() {
 
