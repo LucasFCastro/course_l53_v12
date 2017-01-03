@@ -6,44 +6,28 @@ use CodeFin\Http\Controllers\Controller;
 use CodeFin\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/admin/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function accessToken(Request $request)
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->validateLogin($request);
+
+        $credencials = $this->credentials($request);
+
+        if ($token = Auth::guard('api')->attempt($credencials)) {
+            return $this->sendLoginResponse($request, $token);
+        }
     }
 
-    protected function credentials(Request $request)
+    protected function sendLoginResponse(Request $request, $token)
     {
-        $data = $request->only($this->username(),'password');
-        $data['role'] = User::ROLE_ADMIN;
-        return $data;
+        return response()->json(['token' => $token]);
     }
 
     public function logout(Request $request)
