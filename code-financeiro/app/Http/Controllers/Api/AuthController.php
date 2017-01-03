@@ -42,6 +42,12 @@ class AuthController extends Controller
         return response()->json(['token' => $token]);
     }
 
+    public function refreshToken(Request $request)
+    {
+        $token = Auth::guard('api')->refresh();
+        return $this->sendLoginResponse($request, $token);
+    }
+
     public function logout()
     {
         Auth::guard('api')->logout();

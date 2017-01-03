@@ -9,7 +9,6 @@
 
                 <div class="panel-body">
                     You are logged in!
-                    <p>Você está logado!</p>
                 </div>
             </div>
         </div>
