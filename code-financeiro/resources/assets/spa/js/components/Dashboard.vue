@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Example Component {{tempo}}</div>
+                    <div class="panel-heading">Meu Dashboard</div>
 
                     <div class="panel-body">
-                        Eu sou umcomponente.
+                        Meu conteudo
                     </div>
                 </div>
             </div>
@@ -16,13 +16,6 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component ready.')
-        },
-        data(){
-            return {
-                tempo: Date.now()
-            }
-        }
+
     }
 </script>

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-	import {Jwt} from '../resources.js';
+	import Auth from '../services/auth.js';
 	export default {
 		data() {
 			return {
@@ -44,10 +44,8 @@
 		},
 		methods: {
 			login(){
-				Jwt.accessToken(this.user.email, this.user.password)
-					.then((response) => {
-						console.log(response);
-					});
+				Auth.login(this.user.email, this.user.password)
+					.then(() => this.$router.go({name: 'dashboard'}));
 			}
 		}
 	}

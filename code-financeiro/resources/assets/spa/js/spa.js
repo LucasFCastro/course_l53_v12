@@ -1,9 +1,11 @@
+import localStorage from './services/localStorage.js';
 require('materialize-css');
 window.Vue = require('vue');
 require('vue-resource');
 Vue.http.options.root = "http://localhost:8000/api"
 
 require('./router');
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
