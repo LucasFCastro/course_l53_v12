@@ -8,5 +8,8 @@ export default {
 				localStorage.set('token', response.data.token);
 				return response;
 			});
+	},
+	getAuthorizationHeader(){
+		return `Bearer ${localStorage.get('token')}`;
 	}
 };
