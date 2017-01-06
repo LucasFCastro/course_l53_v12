@@ -3,6 +3,13 @@
         <div class="row">
             <div class="col s8 offset-s2 z-depth-4">
                 <h5 class="center">Login Code Financeiro</h5>
+				<div class="row" v-if="error.error">
+					<div class="col s12">
+						<div class="card-panel red">
+							<span class="white-text">{{ error.message }}</span>
+						</div>
+					</div>
+				</div>
                 <form method="POST" @submit.prevent="login()">
                     <div class="row">
                         <div class="input-field col s12">
@@ -39,13 +46,25 @@
 				user: {
 					email: '',
 					password: ''
+				},
+				error: {
+					error: false,
+					message: ''
 				}
 			}
 		},
 		methods: {
 			login(){
 				Auth.login(this.user.email, this.user.password)
-					.then(() => this.$router.go({name: 'dashboard'}));
+					.then(() => this.$router.go({name: 'dashboard'}))
+					.catch((responseError)=>{
+						if (responseError.status === 401) {
+							this.error.message = responseError.data.message;
+						} else {
+							this.error.message = 'Login failed'
+						}
+						this.error.error = true;
+					})
 			}
 		}
 	}
