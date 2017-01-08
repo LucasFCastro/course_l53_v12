@@ -1,8 +1,6 @@
 import localStorage from './services/localStorage.js';
 import appConfig from './services/appConfig.js';
 
-console.log(appConfig);
-
 require('materialize-css');
 window.Vue = require('vue');
 require('vue-resource');

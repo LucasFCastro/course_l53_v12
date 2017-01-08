@@ -61,7 +61,7 @@
 						if (responseError.status === 401) {
 							this.error.message = responseError.data.message;
 						} else {
-							this.error.message = 'Login failed'
+							this.error.message = 'Login failed';
 						}
 						this.error.error = true;
 					})
