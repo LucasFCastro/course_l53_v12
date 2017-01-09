@@ -1,15 +1,16 @@
+import JwtToken from './jwt-token.js';
 import auth from './auth.js';
 import appConfig from './appConfig.js';
 
 Vue.http.interceptors.push((request, next) => {
-	request.headers.set('Authorization', auth.getAuthorizationHeader());
+	request.headers.set('Authorization', JwtToken.getAuthorizationHeader());
 	next();
 });
 
 Vue.http.interceptors.push((request, next) => {
 	next((response) => {
 		if (response.status === 401) {
-			return auth.refreshToken()
+			return JwtToken.refreshToken()
 			.then(() => {
 				return Vue.http(request);
 			})

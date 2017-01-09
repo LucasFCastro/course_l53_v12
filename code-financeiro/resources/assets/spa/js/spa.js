@@ -9,7 +9,6 @@ Vue.http.options.root = appConfig.api_url;
 require('./services/interceptors.js');
 require('./router');
 
-console.log(appConfig.login_url);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
