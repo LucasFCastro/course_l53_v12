@@ -15,10 +15,16 @@
 </template>
 
 <script>
+
     import Auth from '../services/auth.js';
+    import {User} from '../services/resources.js';
+
     export default {
         ready(){
-            
+            User.get().then((response) => {
+                console.log(response.data);
+            });
+            // console.log(Auth.user());
         }
     }
 </script>

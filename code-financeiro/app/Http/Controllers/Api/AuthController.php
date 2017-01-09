@@ -64,7 +64,7 @@ class AuthController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        return response()->json(['message' => Lang::get('auth.failed')], 401);
+        return response()->json(['message' => Lang::get('auth.failed')], 400);
     }
 
     /**

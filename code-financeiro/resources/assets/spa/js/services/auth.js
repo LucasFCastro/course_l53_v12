@@ -27,6 +27,12 @@ export default {
 			.then(afterLogout())
 			.catch(afterLogout());
 	},
+	refreshToken(){
+		return Jwt.refreshToken().then((response) => {
+			localStorage.set(TOKEN, response.data.token);
+			return response;
+		});
+	},
 	getAuthorizationHeader(){
 		return `Bearer ${localStorage.get(TOKEN)}`;
 	},
