@@ -18,7 +18,7 @@
     import Auth from '../services/auth.js';
     export default {
         ready(){
-            console.log(Auth.user());
+            
         }
     }
 </script>
