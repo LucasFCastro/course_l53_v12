@@ -4,34 +4,52 @@ import {User} from './resources.js';
 
 const USER = 'user';
 
-const afterLogin = (response) => {
+const afterLogin = function(response) {
+	this.user.check = true;
 	User.get()
-		.then((response) => localStorage.setObject(USER, response.data))
+		.then((response) => {
+			this.user.data = response.data;
+		})
 };
 
 export default {
+	user: {
+		set data(value){
+			if (!value) {
+				localStorage.remove(USER);
+				this._data = null;
+				return;
+			}
+			this._data = value;
+			localStorage.setObject(User, value);
+		},
+		get data(){
+			if (!this._data) {
+				this._data = localStorage.getObject(User);
+			}
+			return this._data;
+		},
+		check: JwtToken.token ? true : false
+	},
 	login(email, password) {
 		return JwtToken.accessToken(email, password)
 			.then((response) => {
-				afterLogin(response);
+				let afterLoginContext = afterLogin.bind(this);
+				afterLoginContext(response);
 				return response;
 			});
 	},
 	logout(){
-		let afterLogout = () => {
-			this.clearAuth()
+		let afterLogout = (response) => {
+			this.clearAuth();
+			return response;
 		};
 		return JwtToken.revokeToken()
 			.then(afterLogout())
 			.catch(afterLogout());
 	},
-	user(){
-		return localStorage.getObject(USER);
-	},
-	check(){
-		return JwtToken.token ? true : false;
-	},
 	clearAuth(){
-		localStorage.remove(USER);
+		this.user.data = null;
+		this.user.check = false;
 	}
 };

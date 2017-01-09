@@ -8,7 +8,7 @@ const router = new VueRouter();
 router.map(routerMap);
 
 router.beforeEach((transition) => {
-    if(transition.to.auth && !Auth.check()){
+    if(transition.to.auth && !Auth.user.check){
         return router.go({name: 'auth.login'});
     }
     transition.next();

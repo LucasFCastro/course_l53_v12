@@ -1,5 +1,5 @@
 import localStorage from './localStorage.js';
-import {Jwt, User} from './resources.js';
+import {Jwt} from './resources.js';
 
 const TOKEN = 'token';
 export default {
@@ -24,12 +24,13 @@ export default {
 
 	},
 	revokeToken(){
-		let aftertRevokeToken = () => {
+		let aftertRevokeToken = (response) => {
 			this.token = null;
-		};
+			return response;
+		}
 		return Jwt.logout()
-			.then(aftertRevokeToken())
-			.catch(aftertRevokeToken());
+			.then(aftertRevokeToken)
+			.catch(aftertRevokeToken);
 
 	},
 	getAuthorizationHeader(){
