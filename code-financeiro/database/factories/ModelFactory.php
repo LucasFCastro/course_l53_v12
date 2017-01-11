@@ -11,19 +11,27 @@
 |
 */
 
-$factory->define(\CodeFin\User::class, function (Faker\Generator $faker) {
+$factory->define(\CodeFin\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'password' => $password ?: $password = bcrypt('123456'),
         'remember_token' => str_random(10),
     ];
 });
 
-$factory->state(\CodeFin\User::class, 'admin', function (Faker\Generator $faker) {
+$factory->define(\CodeFin\Models\Bank::class, function (Faker\Generator $faker) {
+
     return [
-        'role' => \CodeFin\User::ROLE_ADMIN,
+        'name' => $faker->name,
+        'logo' => md5(time()).".jpeg"
+    ];
+});
+
+$factory->state(\CodeFin\Models\User::class, 'admin', function (Faker\Generator $faker) {
+    return [
+        'role' => \CodeFin\Models\User::ROLE_ADMIN,
     ];
 });

@@ -168,6 +168,8 @@ return [
          */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+
         //
 
         /*
@@ -177,6 +179,7 @@ return [
         CodeFin\Providers\AuthServiceProvider::class,
         // CodeFin\Providers\BroadcastServiceProvider::class,
         CodeFin\Providers\EventServiceProvider::class,
+        CodeFin\Providers\RepositoryServiceProvider::class,
         CodeFin\Providers\RouteServiceProvider::class,
 
     ],

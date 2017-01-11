@@ -87,7 +87,7 @@ export default {
 	props: {
 		config: {
 			type: Object,
-			default(){
+			default () {
 				return {
 					nameUser: '',
 					nameApp: '',
@@ -98,24 +98,24 @@ export default {
 			}
 		}
 	},
-    ready(){
-        $('.button-collapse').sideNav()
-        $('.collapsible').collapsible()
-        $('.button-dropdown').dropdown({
-            belowOrigin: true
-        })
-    },
-    methods: {
-        gotoMenu(rota) {
-            $('.button-collapse').sideNav('hide');
-                this.$router.go({
-                name: rota
-            })
-        },
-		gotoLogout(){
+	ready() {
+		$('.button-collapse').sideNav()
+		$('.collapsible').collapsible()
+		$('.button-dropdown').dropdown({
+			belowOrigin: true
+		})
+	},
+	methods: {
+		gotoMenu(rota) {
+			$('.button-collapse').sideNav('hide');
+			this.$router.go({
+				name: rota
+			})
+		},
+		gotoLogout() {
 			$('#logout-form').submit();
 		}
-    }
+	}
 };
 </script>
 
