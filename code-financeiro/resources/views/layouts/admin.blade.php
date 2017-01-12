@@ -25,8 +25,8 @@
                     'nameUser' => Auth::user()->name,
                     'menus' =>[
                         [
-                            'name' => 'Dashboard',
-                            'url' => '/dashboard',
+                            'name' => 'Bancos',
+                            'url' => route('admin.banks.index'),
                             'menuId' => ''
                         ],
                         [

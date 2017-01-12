@@ -4,7 +4,7 @@
 		<div class="row">
 			<h4 class="center">Listagem de Bancos</h4>
 			<div class="col s12">
-				 <a class="
+				 <a href="{{route('admin.banks.create')}}" class="
 					 btn-floating btn-large waves-effect waves-light
 					 z-depth-3
 					 right"
