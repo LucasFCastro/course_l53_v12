@@ -1,4 +1,5 @@
-require('materialize-css')
+require('materialize-css');
+require('sweetalert');
 window.Vue = require('vue');
 require('vue-resource');
 

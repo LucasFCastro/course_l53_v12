@@ -30,9 +30,14 @@
 		  					<a href="{{route('admin.banks.edit', ['bank' => $bank->id])}}">
 		  						<i class="material-icons">edit</i>
 		  					</a> |
-		  					<a href="">
-		  						<i class="material-icons">delete</i>
-		  					</a>
+							 	<delete-action
+									text-name="{{$bank->name}}"
+									action="{{route('admin.banks.destroy', ['bank' => $bank->id])}}"
+									id="form-delete-{{$bank->id}}"
+									csrf-token="{{csrf_token()}}"
+									>
+
+							 	</delete-action>
 		  				  </td>
 		  				</tr>
 					@endforeach
