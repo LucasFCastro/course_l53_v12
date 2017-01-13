@@ -27,7 +27,7 @@
 		  				  <td class="center">{{ $bank->id }}</td>
 		  				  <td>{{ $bank->name }}</td>
 		  				  <td class="center">
-		  					<a href="">
+		  					<a href="{{route('admin.banks.edit', ['bank' => $bank->id])}}">
 		  						<i class="material-icons">edit</i>
 		  					</a> |
 		  					<a href="">

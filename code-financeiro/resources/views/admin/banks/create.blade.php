@@ -4,12 +4,7 @@
 		<div class="row">
 			<h4 class="center">Cadastro de Bancos</h4>
 			{!! Form::open(['route' => 'admin.banks.store']) !!}
-				<div class="row">
-					<div class="input-field col s6">
-						{!! Form::label('name', 'Name') !!}
-						{!! Form::text('name', null) !!}
-					</div>
-				</div>
+				@include('admin.banks._form')
 				<div class="row">
 					{!! Form::submit('Criar banco', ['class' => 'btn waves-effect']) !!}
 				</div>
