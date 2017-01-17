@@ -51,7 +51,7 @@ export default {
 		},
 		deleteItem(){
 			$(`#${this.id}`).submit();
-			swal("Excluído!", `O banco ${this.textName} foi excluído com sucesso.`, "success");
+			swal("Excluído!", `O registro foi excluído com sucesso.`, "success");
 		}
 	}
 }
