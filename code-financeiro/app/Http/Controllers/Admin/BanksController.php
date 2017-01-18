@@ -110,7 +110,6 @@ class BanksController extends Controller
      */
     public function update(BankUpdateRequest $request, $id)
     {
-
         $bank = $this->repository->update($request->all(), $id);
 
         // if ($request->wantsJson()) {

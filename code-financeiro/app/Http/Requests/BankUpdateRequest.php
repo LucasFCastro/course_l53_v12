@@ -21,10 +21,18 @@ class BankUpdateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        return [
-            //
-        ];
-    }
-}
+     public function rules()
+     {
+         return [
+             'name' => 'required|max:255',
+             'logo' => 'image'
+         ];
+     }
+
+     public function attributes()
+     {
+         return [
+             'name' => 'nome'
+         ];
+     }
+ }
