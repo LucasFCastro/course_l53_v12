@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/OneDrive/www/laravel-vue/code-financeiro/database/migrations/2017_01_18_124442_create_banks_data.php</file>
+            <file>file:/D:/OneDrive/www/laravel-vue/code-financeiro/storage/logs/laravel.log</file>
+            <file>file:/D:/OneDrive/www/laravel-vue/code-financeiro/app/Repositories/BankRepositoryEloquent.php</file>
+            <file>file:/D:/OneDrive/www/laravel-vue/code-financeiro/database/migrations/2017_01_18_132412_create_bank_logo_default.php</file>
+        </group>
     </open-files>
 </project-private>

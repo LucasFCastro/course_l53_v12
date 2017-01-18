@@ -40,7 +40,7 @@ class BankLogoUploadListener
             $destFile = Bank::logosDir();
 
             $result = \Storage::disk('public')->putFileAs($destFile, $logo, $name);
-            if ($bank->created_at == $bank->updated_at && $result) {
+            if ($result && $bank->created_at == $bank->updated_at) {
                 $this->repository->update(['logo' => $name], $bank->id);
             }
 
