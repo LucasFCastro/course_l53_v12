@@ -36,7 +36,7 @@ class BankLogoUploadListener
         $logo = $event->getLogo();
         if ($logo) {
 
-            $name = $bank->created_at == $bank->updated_at ? md5(time()) . "." . $logo->guessExtension() : $bank->logo;
+            $name = $bank->created_at == $bank->updated_at ? md5(time().$logo->getClientOriginalName()) . "." . $logo->guessExtension() : $bank->logo;
             $destFile = Bank::logosDir();
 
             $result = \Storage::disk('public')->putFileAs($destFile, $logo, $name);
