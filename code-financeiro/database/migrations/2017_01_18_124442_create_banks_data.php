@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Http\UploadedFile;
+use CodeFin\Repositories\BankRepository;
+use CodeFin\Models\Bank;
 
 class CreateBanksData extends Migration
 {
@@ -15,7 +17,7 @@ class CreateBanksData extends Migration
     public function up()
     {
         /** @var codeFin\Repositories\BankRepository $repository */
-        $repository = app(\CodeFin\Repositories\BankRepository::class); //helper app, para passar o serviço que o laravel gere
+        $repository = app(BankRepository::class);
         foreach ($this->getData() as $bankArray) {
             $repository->create($bankArray);
         }
@@ -28,7 +30,14 @@ class CreateBanksData extends Migration
      */
     public function down()
     {
-
+        $repository = app(BankRepository::class);
+        for ($index = 1; $index < count($this->getData()); $index++) {
+            $model = $repository->find($index);
+            if ($model) {
+                $destFile = Bank::logosDir(). '/' . $model->logo;
+                \Storage::disk('public')->delete($destFile);
+            }            
+        }
     }
 
     public function getData()
