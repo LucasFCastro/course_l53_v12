@@ -26,40 +26,29 @@
                     'nameUser' => Auth::user()->name,
                     'menus' =>[
                         [
+                            'name' => 'Dashboard',
+                            'url' => route('admin.home'),
+                            'menuId' => '',
+                            'active' => isRouteActive('admin.home')
+                        ],
+                        [
                             'name' => 'Bancos',
                             'url' => route('admin.banks.index'),
-                            'menuId' => ''
-                        ],
-                        [
-                            'name' => 'Contas a pagar',
-                            'url' => '/home',
-                            'menuId' => 'bill-pay',
+                            'menuId' => 'admin-banks',
+                            'active' => isRouteActive('admin.banks.index') || isRouteActive('admin.banks.create'),
                             'menusDropdown' => [
                                 [
-                                    'name' => 'Criar Conta',
-                                    'url' => '/bill-pay/create'
+                                    'name' => 'Novo Banco',
+                                    'url' => route('admin.banks.create'),
+                                    'active' => isRouteActive('admin.banks.create')
                                 ],
                                 [
-                                    'name' => 'Listar Conta',
-                                    'url' => '/home'
+                                    'name' => 'Listar Bancos',
+                                    'url' => route('admin.banks.index'),
+                                    'active' => isRouteActive('admin.banks.index')
                                 ]
                             ]
-                        ],
-                        [
-                            'name' => 'Contas a receber',
-                            'url' => '/home',
-                            'menuId' => 'bill-receive',
-                            'menusDropdown' => [
-                                [
-                                    'name' => 'Criar Conta',
-                                    'url' => '/home'
-                                ],
-                                [
-                                    'name' => 'Listar Conta',
-                                    'url' => '/home'
-                                ]
-                            ]
-                        ],
+                        ]
                     ],
                     'urlLogout' => env('URL_ADMIN_LOGOUT'),
                     'csrfToken' => csrf_token()

@@ -66,7 +66,6 @@ class BanksController extends Controller
     public function store(BankCreateRequest $request)
     {
         $data = $request->all();
-        $data['logo'] = md5(time()) . '.jpeg';
         $bank = $this->repository->create($data);
 
 

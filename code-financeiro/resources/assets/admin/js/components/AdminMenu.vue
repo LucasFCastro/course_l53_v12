@@ -3,7 +3,7 @@
 		<input type="hidden" name="_token" :value="config.csrfToken">
 	</form>
     <ul class="dropdown-content" v-for="o in config.menus" :id="o.menuId">
-        <li v-for="item in o.menusDropdown">
+        <li v-for="item in o.menusDropdown" :class="{'active': item.active}">
             <a :href=item.url>{{ item.name }}</a>
         </li>
     </ul>
@@ -24,7 +24,7 @@
                 </a>
 
                 <ul class="right hide-on-med-and-down">
-                    <li v-for="o in config.menus">
+                    <li v-for="o in config.menus" :class="{'active': o.active}">
                         <a v-if="o.menusDropdown" class="button-dropdown" :data-activates="o.menuId">
                             {{o.name}} <i class="material-icons right">arrow_drop_down</i>
                         </a>
@@ -39,9 +39,9 @@
 
                 <ul id="nav-mobile" class="side-nav">
 
-                    <li v-for="o in config.menus">
+                    <li v-for="o in config.menus" :class="{'active': o.active}">
                         <div v-if="!o.menuId">
-                            <a @click.prevent="gotoMenu(o.url)">{{o.name}}</a>
+                            <a :href=o.url>{{o.name}}</a>
                         </div>
                         <div v-else>
                             <ul class="collapsible"  data-collapsible="accordion">
@@ -51,8 +51,8 @@
                                     </a>
                                     <div class="collapsible-body">
                                         <ul>
-                                            <li v-for="item in o.menusDropdown">
-                                                <a @click.prevent="gotoMenu(item.url)">{{item.name}}</a>
+                                            <li v-for="item in o.menusDropdown" :class="{'active': item.active}">
+                                                <a :href=item.url>{{item.name}}</a>
                                             </li>
                                         </ul>
                                     </div>
